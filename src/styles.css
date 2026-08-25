@@ -1,0 +1,77 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --color-void: #08070c;
+  --color-ink: #121018;
+  --color-panel: #18151f;
+  --color-line: #2c2836;
+  --color-cream: #f3ead8;
+  --color-muted: #9a9184;
+  --color-gold: #d4af5a;
+  --color-cyan: #4fd6c8;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --radius: 0.75rem;
+  --shadow-border: 0 0 0 1px rgba(243, 234, 216, 0.08);
+  --shadow-border-hover: 0 0 0 1px rgba(212, 175, 90, 0.45);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  html,
+  body,
+  #app {
+    min-height: 100%;
+    background: var(--color-void);
+    color: var(--color-cream);
+  }
+  body {
+    font-family: var(--font-sans);
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    font-family: var(--font-display);
+  }
+  p {
+    text-wrap: pretty;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  img {
+    outline: 1px solid rgba(243, 234, 216, 0.1);
+    outline-offset: -1px;
+  }
+  input[type="range"] {
+    accent-color: var(--color-gold);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.loom-scroll::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.loom-scroll::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 90, 0.35);
+  border-radius: 99px;
+}
+.loom-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}

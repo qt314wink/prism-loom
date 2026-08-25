@@ -1,0 +1,35 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Prism Loom",
+      "hasCanvas": true,
+      "bodyTextLen": 1419,
+      "bodyTextHash": "af791ed777bfc3cc35b45838ad6024ebd0c61e26ed4f7462cc6c70aea61075ad",
+      "bodyTextPrefix": "SEQUENTIAL MANDALA MOTION Prism Loom PLATE MORPH RE-FOLD Night L",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Prism Loom",
+      "hasCanvas": true,
+      "bodyTextLen": 1401,
+      "bodyTextHash": "5b29a26c2a10c7dba3179f8dfd3c7ccbcb6d66a1452629c877ddeeb4aab4b955",
+      "bodyTextPrefix": "SEQUENTIAL MANDALA MOTION Prism Loom Sign in PLATE MORPH REFOLD ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

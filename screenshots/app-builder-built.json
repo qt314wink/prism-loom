@@ -1,0 +1,39 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Prism Loom",
+      "hasCanvas": true,
+      "bodyTextLen": 1419,
+      "bodyTextHash": "af791ed777bfc3cc35b45838ad6024ebd0c61e26ed4f7462cc6c70aea61075ad",
+      "bodyTextPrefix": "SEQUENTIAL MANDALA MOTION Prism Loom PLATE MORPH RE-FOLD Night L",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Prism Loom",
+      "hasCanvas": true,
+      "bodyTextLen": 1393,
+      "bodyTextHash": "74c27d245f83fdf07fa0868991f363598ceccd6ab4490193fa6c930b9cd91e1a",
+      "bodyTextPrefix": "SEQUENTIAL MANDALA MOTION Prism Loom PLATE MORPH REFOLD Night Li",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-built.json",
+  "divergesFromBaseline": true,
+  "baselineReasons": [
+    "mobile: body text replaced (similar length, page start changed)"
+  ]
+}
