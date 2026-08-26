@@ -13,6 +13,8 @@ const MODES: { id: LoomMode; label: string }[] = [
 export function AppHeader() {
   const mode = useStudio((s) => s.mode);
   const setMode = useStudio((s) => s.setMode);
+  const view = useStudio((s) => s.view);
+  const setView = useStudio((s) => s.setView);
 
   return (
     <header className="flex items-center justify-between gap-3 border-b border-line px-4 py-3 md:px-6">
@@ -31,12 +33,22 @@ export function AppHeader() {
               onClick={() => setMode(m.id)}
               className={cn(
                 "rounded-full px-3 py-1.5 text-xs tracking-wide uppercase transition-colors",
-                mode === m.id ? "bg-gold text-void" : "text-muted hover:text-cream",
+                view === "loom" && mode === m.id ? "bg-gold text-void" : "text-muted hover:text-cream",
               )}
             >
               {m.label}
             </button>
           ))}
+          <button
+            type="button"
+            onClick={() => setView(view === "cinema" ? "loom" : "cinema")}
+            className={cn(
+              "rounded-full px-3 py-1.5 text-xs tracking-wide uppercase transition-colors",
+              view === "cinema" ? "bg-gold text-void" : "text-muted hover:text-cream",
+            )}
+          >
+            Cinema
+          </button>
         </div>
         <AuthSlot />
       </div>

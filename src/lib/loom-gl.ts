@@ -107,6 +107,16 @@ function compile(gl: WebGL2RenderingContext, type: number, src: string) {
   return sh;
 }
 
+function sourceSize(image: TexImageSource): [number, number] {
+  if (image instanceof HTMLVideoElement) return [image.videoWidth, image.videoHeight];
+  if (image instanceof HTMLImageElement) return [image.naturalWidth, image.naturalHeight];
+  if (image instanceof HTMLCanvasElement) return [image.width, image.height];
+  if (typeof ImageBitmap !== "undefined" && image instanceof ImageBitmap) {
+    return [image.width, image.height];
+  }
+  return [0, 0];
+}
+
 export class LoomGL {
   gl: WebGL2RenderingContext;
   program: WebGLProgram;
@@ -115,12 +125,15 @@ export class LoomGL {
   texB: WebGLTexture;
   loc: Record<string, WebGLUniformLocation | null>;
   destroyed = false;
+  private texW = [0, 0];
+  private texH = [0, 0];
 
   constructor(canvas: HTMLCanvasElement) {
     const gl = canvas.getContext("webgl2", {
       premultipliedAlpha: false,
       alpha: true,
       antialias: true,
+      powerPreference: "high-performance",
     });
     if (!gl) throw new Error("WebGL2 unavailable");
     this.gl = gl;
@@ -200,7 +213,16 @@ export class LoomGL {
     const tex = slot === 0 ? this.texA : this.texB;
     gl.bindTexture(gl.TEXTURE_2D, tex);
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 0);
+    const [w, h] = sourceSize(image);
+    if (w > 0 && h > 0 && this.texW[slot] === w && this.texH[slot] === h) {
+      gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, gl.RGBA, gl.UNSIGNED_BYTE, image);
+      return;
+    }
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+    if (w > 0 && h > 0) {
+      this.texW[slot] = w;
+      this.texH[slot] = h;
+    }
   }
 
   resize(w: number, h: number) {

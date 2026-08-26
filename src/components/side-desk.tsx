@@ -1,9 +1,9 @@
 import { useMemo, useState } from "react";
-import { Copy, Clapperboard, Hexagon, Layers, Plus, Sparkles, Wand2 } from "lucide-react";
+import { Copy, Clapperboard, Hexagon, Layers, Play, Plus, Sparkles, Wand2 } from "lucide-react";
 import { toast } from "sonner";
 import { SignedIn } from "@/lib/auth/gates";
 import { useCurrentUser } from "@/lib/auth/use-current-user";
-import { KEYFRAME_EDITS, PLATE_BY_ID, PLATES, REELS } from "@/lib/plates";
+import { KEYFRAME_EDITS, PLATE_BY_ID, PLATES, REELS, formatTimecode } from "@/lib/plates";
 import { compileJsonContext, MOTIONS, promptList, type MotionId } from "@/lib/motions";
 import { forgeKeyframe, saveLoom } from "@/lib/loom-api";
 import { useStudio, type DeskTab } from "@/store/studio";
@@ -11,10 +11,10 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const TABS: { id: DeskTab; label: string; icon: typeof Hexagon }[] = [
+  { id: "reels", label: "Reels", icon: Clapperboard },
   { id: "tokens", label: "Tokens", icon: Hexagon },
   { id: "motion", label: "Motion", icon: Wand2 },
   { id: "sequence", label: "JSON", icon: Layers },
-  { id: "reels", label: "Reels", icon: Clapperboard },
 ];
 
 export function SideDesk() {
@@ -364,47 +364,76 @@ function JsonDesk() {
 }
 
 function ReelDesk() {
-  const setActive = useStudio((s) => s.setActive);
-  const setPlaying = useStudio((s) => s.setPlaying);
-  const setMotion = useStudio((s) => s.setMotion);
+  const activeReelId = useStudio((s) => s.activeReelId);
+  const view = useStudio((s) => s.view);
+  const playReel = useStudio((s) => s.playReel);
+  const setLoopMode = useStudio((s) => s.setLoopMode);
+  const loopMode = useStudio((s) => s.loopMode);
+
   return (
     <div className="space-y-4">
       <div>
         <p className="text-[0.65rem] tracking-[0.24em] text-gold uppercase">Motion reels</p>
-        <h3 className="font-display text-xl text-cream">Baked 6s loops</h3>
+        <h3 className="font-display text-xl text-cream">Cinema catalog</h3>
         <p className="mt-1 text-sm text-muted">
-          Sequential edits, then image-to-video. Camera locked on center. Use as stitchable shots.
+          Ten baked loops on the circular stage. One player, gapless loop, journey mode. Click a card to play.
         </p>
       </div>
-      {REELS.map((r) => (
-        <article key={r.id} className="overflow-hidden rounded-xl bg-ink shadow-[var(--shadow-border)]">
-          <video
-            src={r.src}
-            controls
-            loop
-            playsInline
-            poster={PLATE_BY_ID[r.plateId].src}
-            className="aspect-square w-full object-cover"
-          />
-          <div className="space-y-2 p-3">
-            <p className="font-display text-cream">{r.title}</p>
-            <p className="text-xs text-muted">{r.prompt}</p>
-            <Button
-              size="sm"
-              onClick={() => {
-                setPlaying(false);
-                setActive(r.plateId);
-                setMotion(r.motionId as MotionId);
-              }}
-            >
-              Open on loom
-            </Button>
-          </div>
-        </article>
-      ))}
-      <p className="text-xs text-muted">
-        Full catalog is {PLATES.length} plates. Morphs sit between every consecutive pair on the chromatic journey.
-      </p>
+      <div className="flex flex-wrap gap-2">
+        <Button
+          size="sm"
+          variant="gold"
+          onClick={() => {
+            setLoopMode("all");
+            playReel(REELS[0].id);
+          }}
+        >
+          <Play className="size-3.5" />
+          Play journey
+        </Button>
+        <Button
+          size="sm"
+          variant={loopMode === "one" ? "gold" : "line"}
+          onClick={() => setLoopMode("one")}
+        >
+          Loop one
+        </Button>
+        <Button
+          size="sm"
+          variant={loopMode === "all" ? "gold" : "line"}
+          onClick={() => setLoopMode("all")}
+        >
+          Loop all
+        </Button>
+      </div>
+      {REELS.map((r) => {
+        const on = view === "cinema" && r.id === activeReelId;
+        return (
+          <article
+            key={r.id}
+            className={cn(
+              "overflow-hidden rounded-xl bg-ink shadow-[var(--shadow-border)]",
+              on && "shadow-[var(--shadow-border-hover)]",
+            )}
+          >
+            <button type="button" className="relative block w-full" onClick={() => playReel(r.id)}>
+              <img src={r.poster} alt="" className="aspect-square w-full object-cover" />
+              <span className="absolute inset-0 grid place-items-center bg-void/20">
+                <span className="grid size-12 place-items-center rounded-full bg-gold text-void">
+                  <Play className="ml-0.5 size-5" />
+                </span>
+              </span>
+              <span className="absolute right-2 bottom-2 rounded bg-void/80 px-1.5 py-0.5 font-mono text-[0.65rem] text-gold">
+                {formatTimecode(r.durationSec)}
+              </span>
+            </button>
+            <div className="space-y-2 p-3">
+              <p className="font-display text-cream">{r.title}</p>
+              <p className="text-xs text-muted">{r.prompt}</p>
+            </div>
+          </article>
+        );
+      })}
     </div>
   );
 }

@@ -116,7 +116,7 @@ var HEADERS = { TSS_SHELL: "X-TSS_SHELL" };
 * the dev styles URL for route-scoped CSS collection.
 */
 async function getStartManifest(matchedRoutes) {
-	const { tsrStartManifest } = await import("../_tanstack-start-manifest_v-DemIVwYf.mjs");
+	const { tsrStartManifest } = await import("../_tanstack-start-manifest_v-n54fwTf7.mjs");
 	const startManifest = tsrStartManifest();
 	let routes = startManifest.routes;
 	routes[rootRouteId];
@@ -138,15 +138,15 @@ async function getStartManifest(matchedRoutes) {
 var manifest = {
 	"3e3baa55764a723a1e615f520d21153aac81f2f94ae3443312b91e62cd91ddb9": {
 		functionName: "listLooms_createServerFn_handler",
-		importer: () => import("./loom-api-Cyu6h1ih.mjs")
+		importer: () => import("./loom-api-CC_DUm4Y.mjs")
 	},
 	"5533e0724290a930b3bec20e728320fd69f8f328d3a9b0fda85a634a25f6c40d": {
 		functionName: "forgeKeyframe_createServerFn_handler",
-		importer: () => import("./loom-api-Cyu6h1ih.mjs")
+		importer: () => import("./loom-api-CC_DUm4Y.mjs")
 	},
 	"9b4abe1b7bbeb2637fae46c38613a2ad12a1a6af5acfbcd4c4cd6aeee8bca16a": {
 		functionName: "saveLoom_createServerFn_handler",
-		importer: () => import("./loom-api-Cyu6h1ih.mjs")
+		importer: () => import("./loom-api-CC_DUm4Y.mjs")
 	}
 };
 async function getServerFnById(id, access) {
@@ -1416,7 +1416,7 @@ var getBaseManifest = getProdBaseManifest;
 var createEarlyHintsForRequest = createEarlyHintsCollector;
 async function loadEntries() {
 	const [routerEntry, startEntry, pluginAdapters] = await Promise.all([
-		import("./router-Bhed5bTc.mjs").then((n) => n.t),
+		import("./router-_glysx8a.mjs").then((n) => n.t),
 		import("./start-5Z2QO8AU.mjs"),
 		import("./empty-plugin-adapters-D9UWiqvJ.mjs")
 	]);

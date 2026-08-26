@@ -8,7 +8,10 @@ export type PlateId =
   | "sacred-lotus"
   | "solar-lotus"
   | "sun-daisy"
-  | "spectrum-core";
+  | "spectrum-core"
+  | "frost-sun"
+  | "violet-corona"
+  | "argus-wheel";
 
 export type PlateTokens = {
   id: PlateId;
@@ -305,13 +308,105 @@ export const PLATES: PlateTokens[] = [
     editStill:
       "Keep this exact kaleidoscope. Rotate eight degrees clockwise. Sunburst core expands. Outer cyan and magenta petals pulse outward. Same crop, no new elements.",
   },
+  {
+    id: "frost-sun",
+    index: 10,
+    title: "Frost Sun",
+    sourceFile: "frost-sun.jpg",
+    src: "/plates/frost-sun.jpg",
+    symmetry: 8,
+    folds: "ice-fern octad",
+    energy: "frozen dawn, crystalline fire",
+    temperature: "cool",
+    center: {
+      motif: "yellow eight-point daisy that can catch fire",
+      energy: "solar ember in hoarfrost",
+    },
+    motifs: ["dendritic frost ferns", "lilac ice blades", "ember rays"],
+    texture: "hoarfrost on glass, dendritic ice, molten gold",
+    palette: {
+      ground: "#0a2048",
+      primary: ["#8fd4ff", "#f0d040", "#d8e8ff"],
+      accent: ["#ff6030", "#e8a0d0"],
+    },
+    motionNative: "frost ferns breathe; the daisy either ignites or blooms into ice",
+    videoStill:
+      "Frost-fern kaleidoscope around a yellow daisy. Either fire spreads from the core or ice petals bloom with lightning.",
+    editStill:
+      "Keep this exact frost kaleidoscope. Rotate eight degrees clockwise. Yellow daisy brightens. Ice ferns stay sharp. Same crop, no new elements.",
+  },
+  {
+    id: "violet-corona",
+    index: 11,
+    title: "Violet Corona",
+    sourceFile: "violet-corona.jpg",
+    src: "/plates/violet-corona.jpg",
+    symmetry: 8,
+    folds: "neon lotus wheel",
+    energy: "electric, psychedelic, regal",
+    temperature: "electric",
+    center: {
+      motif: "concentric magenta-cyan lotus with a teal nucleus",
+      energy: "plasma heart",
+    },
+    motifs: ["violet lotus", "peacock plasma feathers", "lime corona"],
+    texture: "neon enamel, feathered plasma, wet gem",
+    palette: {
+      ground: "#100818",
+      primary: ["#c040ff", "#40e0a0", "#2080ff"],
+      accent: ["#f0e040", "#ff40c0"],
+    },
+    motionNative: "lotus rings pulse outward, corona feathers breathe",
+    videoStill:
+      "Neon violet lotus kaleidoscope pulsing; concentric rings bloom and the corona feathers breathe.",
+    editStill:
+      "Keep this exact neon lotus. Rotate eight degrees clockwise. Magenta rings pulse. Teal nucleus brightens. Same crop, no new elements.",
+  },
+  {
+    id: "argus-wheel",
+    index: 12,
+    title: "Argus Wheel",
+    sourceFile: "argus-wheel.jpg",
+    src: "/plates/argus-wheel.jpg",
+    symmetry: 8,
+    folds: "peacock-eye octad",
+    energy: "watchful, tropical, jeweled",
+    temperature: "electric",
+    center: {
+      motif: "yellow-gold star inside a rainbow iris",
+      energy: "all-seeing spark",
+    },
+    motifs: ["peacock eyes", "golden petals", "coral clusters"],
+    texture: "iridescent enamel, wet gem, feathered gold",
+    palette: {
+      ground: "#081018",
+      primary: ["#f0b020", "#4060ff", "#e040c0"],
+      accent: ["#40e0a0", "#f06020"],
+    },
+    motionNative: "peacock eyes blink around a flaring rainbow star",
+    videoStill:
+      "Peacock-eye kaleidoscope rotating; golden petals hold a ring of watching blue eyes around a rainbow star.",
+    editStill:
+      "Keep this exact peacock kaleidoscope. Rotate eight degrees clockwise. Eyes brighten. Gold star flares. Same crop, no new elements.",
+  },
 ];
 
 export const PLATE_BY_ID: Record<PlateId, PlateTokens> = Object.fromEntries(
   PLATES.map((p) => [p.id, p]),
 ) as Record<PlateId, PlateTokens>;
 
-export const DEFAULT_SEQUENCE: PlateId[] = PLATES.map((p) => p.id);
+export const DEFAULT_SEQUENCE: PlateId[] = [
+  "night-lily",
+  "orchid-veil",
+  "jewel-garden",
+  "stained-ice",
+  "sapphire-bloom",
+  "night-crystal",
+  "sacred-lotus",
+  "solar-lotus",
+  "sun-daisy",
+  "spectrum-core",
+];
 
 export type MorphLink = {
   from: PlateId;
@@ -392,41 +487,170 @@ export type Reel = {
   id: string;
   plateId: PlateId;
   src: string;
+  poster: string;
   motionId: string;
   title: string;
   prompt: string;
+  durationSec: number;
+  beat: string;
 };
 
 export const REELS: Reel[] = [
   {
+    id: "orchid-veil-bloom",
+    plateId: "orchid-veil",
+    src: "/videos/orchid-veil-bloom.mp4",
+    poster: "/posters/orchid-veil-bloom.jpg",
+    motionId: "bloom",
+    title: "Orchid Veil · bloom",
+    durationSec: 10,
+    beat: "Bloom",
+    prompt:
+      "Pink and cyan orchid layers unfurl from a jeweled green-red core, then fold back in. Camera locked on center, seamless breathing loop, no cuts.",
+  },
+  {
     id: "jewel-garden-spin",
     plateId: "jewel-garden",
     src: "/videos/jewel-garden-spin.mp4",
+    poster: "/posters/jewel-garden-spin.jpg",
     motionId: "spin-breathe",
-    title: "Jewel Garden · spin breathe",
+    title: "Jewel Garden · spin",
+    durationSec: 6,
+    beat: "Spin",
     prompt:
       "The kaleidoscope mandala slowly rotates clockwise around its exact center while the lavender core gently blooms brighter and teal petals breathe open. Camera locked on center, seamless loop, no cuts.",
+  },
+  {
+    id: "jewel-garden-bloom",
+    plateId: "jewel-garden",
+    src: "/videos/jewel-garden-bloom.mp4",
+    poster: "/posters/jewel-garden-bloom.jpg",
+    motionId: "bloom",
+    title: "Jewel Garden · bloom",
+    durationSec: 10,
+    beat: "Bloom",
+    prompt:
+      "Teal lotus layers of the jewel garden unfurl, gold and magenta wings rotate, and the jeweled core holds. Camera locked, no cuts.",
+  },
+  {
+    id: "night-crystal-flare",
+    plateId: "night-crystal",
+    src: "/videos/night-crystal-flare.mp4",
+    poster: "/posters/night-crystal-flare.jpg",
+    motionId: "mirror-storm",
+    title: "Night Crystal · flare",
+    durationSec: 10,
+    beat: "Flare",
+    prompt:
+      "Navy and gold night-crystal holds, then a white-pink nova bursts from the cream flower and reforms as a jeweled mandala. Camera locked, no cuts.",
   },
   {
     id: "solar-lotus-bloom",
     plateId: "solar-lotus",
     src: "/videos/solar-lotus-bloom.mp4",
+    poster: "/posters/solar-lotus-bloom.jpg",
     motionId: "bloom",
     title: "Solar Lotus · bloom",
+    durationSec: 6,
+    beat: "Bloom",
     prompt:
       "The golden lotus kaleidoscope slowly rotates clockwise around its exact center. The seed-sun in the middle pulses with warm light and teal petals unfurl. Camera locked, seamless loop, no cuts.",
+  },
+  {
+    id: "frost-sun-ember",
+    plateId: "frost-sun",
+    src: "/videos/frost-sun-ember.mp4",
+    poster: "/posters/frost-sun-ember.jpg",
+    motionId: "gem-pulse",
+    title: "Frost Sun · ember",
+    durationSec: 10,
+    beat: "Fire",
+    prompt:
+      "The frost-fern kaleidoscope holds a yellow daisy. Molten rays ignite from the exact center and crawl out through the ice, then recede. Camera locked, no cuts.",
+  },
+  {
+    id: "frost-sun-storm",
+    plateId: "frost-sun",
+    src: "/videos/frost-sun-storm.mp4",
+    poster: "/posters/frost-sun-storm.jpg",
+    motionId: "unfold",
+    title: "Frost Sun · storm",
+    durationSec: 10,
+    beat: "Ice",
+    prompt:
+      "Ice petals bloom from the yellow daisy, drip like thaw, then a violet lightning bolt splits the mandala and the frost ferns reseal. Camera locked, no cuts.",
   },
   {
     id: "spectrum-core-pulse",
     plateId: "spectrum-core",
     src: "/videos/spectrum-core-pulse.mp4",
+    poster: "/posters/spectrum-core-pulse.jpg",
     motionId: "gem-pulse",
     title: "Spectrum Core · pulse",
+    durationSec: 6,
+    beat: "Pulse",
     prompt:
       "The neon rainbow kaleidoscope slowly rotates clockwise around its exact center. The sunburst core expands and contracts like a heartbeat while outer petals pulse. Camera locked, seamless loop, no cuts.",
   },
+  {
+    id: "violet-corona-pulse",
+    plateId: "violet-corona",
+    src: "/videos/violet-corona-pulse.mp4",
+    poster: "/posters/violet-corona-pulse.jpg",
+    motionId: "gem-pulse",
+    title: "Violet Corona · pulse",
+    durationSec: 6,
+    beat: "Pulse",
+    prompt:
+      "Neon violet lotus rings pulse outward; the teal nucleus flares and peacock plasma feathers breathe. Camera locked, seamless loop, no cuts.",
+  },
+  {
+    id: "argus-wheel-gaze",
+    plateId: "argus-wheel",
+    src: "/videos/argus-wheel-gaze.mp4",
+    poster: "/posters/argus-wheel-gaze.jpg",
+    motionId: "petal-wave",
+    title: "Argus Wheel · gaze",
+    durationSec: 6,
+    beat: "Gaze",
+    prompt:
+      "Peacock eyes blink in a ring around a rainbow star. Golden petals hold while the iris core flares. Camera locked, seamless loop, no cuts.",
+  },
 ];
+
+export const REEL_BY_ID: Record<string, Reel> = Object.fromEntries(REELS.map((r) => [r.id, r]));
+
+export function reelsForPlate(id: PlateId): Reel[] {
+  return REELS.filter((r) => r.plateId === id);
+}
+
+export function reelById(id: string): Reel | undefined {
+  return REEL_BY_ID[id];
+}
 
 export function plateById(id: PlateId): PlateTokens {
   return PLATE_BY_ID[id];
+}
+
+export function reelOrdinal(id: string): number {
+  const i = REELS.findIndex((r) => r.id === id);
+  return i < 0 ? 0 : i;
+}
+
+export function nextReel(id: string): Reel {
+  const i = reelOrdinal(id);
+  return REELS[(i + 1) % REELS.length] as Reel;
+}
+
+export function prevReel(id: string): Reel {
+  const i = reelOrdinal(id);
+  return REELS[(i - 1 + REELS.length) % REELS.length] as Reel;
+}
+
+export function formatTimecode(sec: number): string {
+  if (!Number.isFinite(sec) || sec < 0) return "0:00";
+  const s = Math.floor(sec);
+  const m = Math.floor(s / 60);
+  const r = s % 60;
+  return `${m}:${r.toString().padStart(2, "0")}`;
 }
