@@ -5,11 +5,11 @@
       "width": 1280,
       "height": 800,
       "status": 200,
-      "title": "Prism Loom",
+      "title": "Locus",
       "hasCanvas": true,
-      "bodyTextLen": 1419,
-      "bodyTextHash": "af791ed777bfc3cc35b45838ad6024ebd0c61e26ed4f7462cc6c70aea61075ad",
-      "bodyTextPrefix": "SEQUENTIAL MANDALA MOTION Prism Loom PLATE MORPH RE-FOLD Night L",
+      "bodyTextLen": 238,
+      "bodyTextHash": "4bc2b5544d9c94603110445353b51d72890ea84cd82387ec771cc6404888cf91",
+      "bodyTextPrefix": "Locus Laws of light, plotted Time 0 Damped Tangent Beats Flare D",
       "horizontalOverflow": false,
       "consoleErrors": [],
       "pageErrors": [],
@@ -19,11 +19,11 @@
       "width": 390,
       "height": 844,
       "status": 200,
-      "title": "Prism Loom",
+      "title": "Locus",
       "hasCanvas": true,
-      "bodyTextLen": 1393,
-      "bodyTextHash": "74c27d245f83fdf07fa0868991f363598ceccd6ab4490193fa6c930b9cd91e1a",
-      "bodyTextPrefix": "SEQUENTIAL MANDALA MOTION Prism Loom PLATE MORPH REFOLD Night Li",
+      "bodyTextLen": 193,
+      "bodyTextHash": "4db28f62bb84f6947d2bcfd959c51ca578e581b7ed107761571949db17eef4a3",
+      "bodyTextPrefix": "Locus Damped Tangent Beats Flare Diffraction Standing Pulse Abso",
       "horizontalOverflow": false,
       "consoleErrors": [],
       "pageErrors": [],
@@ -32,8 +32,6 @@
   },
   "brandWarnings": [],
   "verdictFile": "/workspace/screenshots/app-builder-built.json",
-  "divergesFromBaseline": true,
-  "baselineReasons": [
-    "mobile: body text replaced (similar length, page start changed)"
-  ]
+  "divergesFromBaseline": false,
+  "baselineReasons": []
 }

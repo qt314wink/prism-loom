@@ -1,0 +1,379 @@
+{
+  "pipeline": "B: Design System Language Compiler",
+  "description": "Validate design_plan.json compilation stages. Generate component reference media.",
+  "prompts": [
+    {
+      "id": "B-01",
+      "title": "stitch_plan.json Visualization",
+      "positive": "DAG graph visualization, copper colored nodes, cyan edges connecting them, material icons embedded, compilation flow diagram, dark background, technical illustration, data flow aesthetic, node graph editor style, clean typography",
+      "negative": "tree diagram, linear flow, organic shape, hand-drawn, watercolor, messy layout, ambiguous connections, decorative only",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "polished",
+          "depth": "bas-relief",
+          "light_response": [
+            "specular",
+            "metallic"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.0,
+          "entropy_signature": [],
+          "narrative_phase": "peak"
+        },
+        "shader_technique": {
+          "primary_technique": "sdf_blob",
+          "fallback_strategy": "css_gradient"
+        },
+        "visual_mode": "brutalist",
+        "morphism_class": "siliconmorphism"
+      },
+      "token_bindings": [
+        "--copper",
+        "--cyan",
+        "--void",
+        "--font-mono",
+        "--ease-out"
+      ],
+      "socratic_receipts": [
+        1,
+        4,
+        20,
+        25
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 28,
+        "cfg": 7.5,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "B-02",
+      "title": "Token Diff Heatmap",
+      "positive": "color swatch comparison grid, before and after palette, delta-E values displayed, accessibility shift indicators, warm to cool transition, data visualization, design system audit, precise measurement aesthetic, scientific color analysis",
+      "negative": "static style guide, decorative palette, no data, subjective color choice, artistic only, no metrics, flat presentation",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "matte",
+          "depth": "flat",
+          "light_response": [
+            "diffuse"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.2,
+          "entropy_signature": [
+            "drift"
+          ],
+          "narrative_phase": "senescence"
+        },
+        "shader_technique": {
+          "primary_technique": "palette_cycling",
+          "fallback_strategy": "static_png"
+        },
+        "visual_mode": "editorial",
+        "morphism_class": "papermorphism"
+      },
+      "token_bindings": [
+        "--copper-light",
+        "--cyan",
+        "--magenta",
+        "--dust",
+        "--font-mono"
+      ],
+      "socratic_receipts": [
+        1,
+        9,
+        10,
+        25
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 25,
+        "cfg": 7.0,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "B-03",
+      "title": "Morphism Switcher Spec",
+      "positive": "4-panel UI layout, glassmorphism card, woodmorphism card, papermorphism card, siliconmorphism card, hover state indicators, design system showcase, component matrix, dark interface, premium UI documentation",
+      "negative": "single theme page, static mockup, no interaction states, flat design only, one material, boring presentation, default bootstrap",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "glazed",
+          "depth": "veneer",
+          "light_response": [
+            "specular",
+            "translucent",
+            "diffuse"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.0,
+          "entropy_signature": [],
+          "narrative_phase": "peak"
+        },
+        "shader_technique": {
+          "primary_technique": "ray_marching",
+          "fallback_strategy": "css_filter"
+        },
+        "visual_mode": "holographic",
+        "morphism_class": "glassmorphism"
+      },
+      "token_bindings": [
+        "--glass",
+        "--wood",
+        "--linen",
+        "--sage",
+        "--ease-spring"
+      ],
+      "socratic_receipts": [
+        2,
+        6,
+        7,
+        19,
+        25
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 30,
+        "cfg": 7.5,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "B-04",
+      "title": "Semantic Color Space",
+      "positive": "OKLCH color cylinder visualization, P3 gamut boundary wireframe, copper to cyan gradient path, perceptual color space diagram, scientific color theory, 3D color model, precise measurement, design token visualization, technical illustration",
+      "negative": "hex codes only, flat color wheel, RGB cube only, no perceptual data, artistic color theory, hand-painted, subjective palette",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "polished",
+          "depth": "bas-relief",
+          "light_response": [
+            "specular",
+            "metallic"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.0,
+          "entropy_signature": [],
+          "narrative_phase": "peak"
+        },
+        "shader_technique": {
+          "primary_technique": "ray_marching",
+          "fallback_strategy": "static_png"
+        },
+        "visual_mode": "brutalist",
+        "morphism_class": "siliconmorphism"
+      },
+      "token_bindings": [
+        "--copper",
+        "--cyan",
+        "--magenta",
+        "--violet",
+        "--void",
+        "--font-mono"
+      ],
+      "socratic_receipts": [
+        1,
+        5,
+        12,
+        15
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 32,
+        "cfg": 7.5,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "B-05",
+      "title": "Agent Handoff Card",
+      "positive": "markdown document rendered as UI card, engine chain diagram, validation checklist with checkmarks, failure mode tree, dark theme documentation, technical writing aesthetic, structured data presentation, workflow visualization, clean monospace",
+      "negative": "prose brief only, no structure, decorative document, hand-written, ambiguous flow, missing validation, vague instructions, no diagrams",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "matte",
+          "depth": "flat",
+          "light_response": [
+            "diffuse"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.0,
+          "entropy_signature": [],
+          "narrative_phase": "peak"
+        },
+        "shader_technique": {
+          "primary_technique": "periodic_functions",
+          "fallback_strategy": "static_png"
+        },
+        "visual_mode": "editorial",
+        "morphism_class": "papermorphism"
+      },
+      "token_bindings": [
+        "--linen",
+        "--void",
+        "--copper",
+        "--font-mono",
+        "--ease-out"
+      ],
+      "socratic_receipts": [
+        4,
+        19,
+        20,
+        29
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 25,
+        "cfg": 7.0,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "B-06",
+      "title": "SVG Filter Composition Tree",
+      "positive": "node graph editor, feTurbulence node connected to feDisplacementMap to feGaussianBlur, SVG filter chain visualization, performance ms badges, real-time render preview, technical tool interface, dark theme developer tool, data flow diagram",
+      "negative": "opaque filter stack, no visibility, hidden implementation, no node graph, flat presentation, missing performance data, undocumented",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "polished",
+          "depth": "bas-relief",
+          "light_response": [
+            "specular"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.0,
+          "entropy_signature": [],
+          "narrative_phase": "peak"
+        },
+        "shader_technique": {
+          "primary_technique": "domain_warping",
+          "fallback_strategy": "css_filter"
+        },
+        "visual_mode": "brutalist",
+        "morphism_class": "siliconmorphism"
+      },
+      "token_bindings": [
+        "--cyan",
+        "--magenta",
+        "--void",
+        "--font-mono",
+        "--ease-out"
+      ],
+      "socratic_receipts": [
+        6,
+        20,
+        25
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 28,
+        "cfg": 7.5,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "B-07",
+      "title": "Shader Fallback Matrix",
+      "positive": "fidelity ladder visualization, GLSL aurora top tier, CSS gradient middle tier, static PNG bottom tier, device capability gate icons, progressive enhancement diagram, inclusive design chart, accessibility-first rendering, technical specification",
+      "negative": "shader only, no fallback, exclusionary design, one-size-fits-all, no progressive enhancement, ignores low-end devices, elitist rendering",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "matte",
+          "depth": "flat",
+          "light_response": [
+            "diffuse"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.0,
+          "entropy_signature": [],
+          "narrative_phase": "peak"
+        },
+        "shader_technique": {
+          "primary_technique": "domain_warping",
+          "fallback_strategy": "css_gradient"
+        },
+        "visual_mode": "editorial",
+        "morphism_class": "papermorphism"
+      },
+      "token_bindings": [
+        "--sage",
+        "--denim",
+        "--dust-light",
+        "--font-ui",
+        "--ease-settle"
+      ],
+      "socratic_receipts": [
+        6,
+        10,
+        19,
+        20
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 28,
+        "cfg": 7.0,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "B-08",
+      "title": "Corruption State Machine",
+      "positive": "6-state diagram, state transition arrows, visual diff per state, UI component showing healthy to corrupted progression, animated state visualization, Zustand store schema diagram, narrative engine visualization, dark theme system diagram",
+      "negative": "static mockup, no states, single design, no failure modes, optimistic only, no error handling, flat presentation, boring documentation",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "glazed",
+          "depth": "fracture",
+          "light_response": [
+            "chromatic-aberration",
+            "iridescent"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.5,
+          "entropy_signature": [
+            "bloom",
+            "fracture",
+            "drift"
+          ],
+          "narrative_phase": "corruption"
+        },
+        "shader_technique": {
+          "primary_technique": "reaction_diffusion",
+          "fallback_strategy": "css_gradient"
+        },
+        "visual_mode": "holographic",
+        "morphism_class": "glassmorphism"
+      },
+      "token_bindings": [
+        "--void",
+        "--copper",
+        "--cyan",
+        "--magenta",
+        "--violet",
+        "--ease-fracture"
+      ],
+      "socratic_receipts": [
+        3,
+        8,
+        11,
+        28
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 32,
+        "cfg": 8.0,
+        "sampler": "dpmpp_2m"
+      }
+    }
+  ]
+}

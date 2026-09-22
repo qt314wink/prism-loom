@@ -1,5 +1,6 @@
 {
-  "title": "Prism Loom",
+  "title": "Locus",
+  "type": "x:game",
   "card": "custom",
-  "type": "x:game"
+  "color": "0C0D0F"
 }

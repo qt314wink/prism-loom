@@ -2,19 +2,27 @@
 @import "tw-animate-css";
 
 @theme {
-  --color-void: #08070c;
-  --color-ink: #121018;
-  --color-panel: #18151f;
-  --color-line: #2c2836;
-  --color-cream: #f3ead8;
-  --color-muted: #9a9184;
-  --color-gold: #d4af5a;
-  --color-cyan: #4fd6c8;
+  --color-bg: #0c0d0f;
+  --color-surface: #151619;
+  --color-elevated: #1c1d21;
+  --color-fg: #ecece8;
+  --color-muted: #8c8e8b;
+  --color-faint: #5c5e5b;
+  --color-line: #2a2b2e;
+  --color-accent: #d4d6d1;
+  --color-accent-fg: #0c0d0f;
+  --color-warn: #c9a27a;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Fraunces", ui-serif, Georgia, serif;
-  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
-  --radius: 0.75rem;
-  --shadow-border: 0 0 0 1px rgba(243, 234, 216, 0.08);
-  --shadow-border-hover: 0 0 0 1px rgba(212, 175, 90, 0.45);
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --shadow-border: 0 0 0 1px rgba(236, 236, 232, 0.08);
+  --shadow-border-hover: 0 0 0 1px rgba(236, 236, 232, 0.16);
+  --shadow-disc: 0 24px 64px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(236, 236, 232, 0.06);
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @layer base {
@@ -26,8 +34,8 @@
   body,
   #app {
     min-height: 100%;
-    background: var(--color-void);
-    color: var(--color-cream);
+    background: var(--color-bg);
+    color: var(--color-fg);
   }
   body {
     font-family: var(--font-sans);
@@ -45,13 +53,6 @@
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
-  img {
-    outline: 1px solid rgba(243, 234, 216, 0.1);
-    outline-offset: -1px;
-  }
-  input[type="range"] {
-    accent-color: var(--color-gold);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -64,34 +65,22 @@
   }
 }
 
-.loom-scroll::-webkit-scrollbar {
+.locus-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(236, 236, 232, 0.16) transparent;
+}
+.locus-scroll::-webkit-scrollbar {
   height: 6px;
   width: 6px;
 }
-.loom-scroll::-webkit-scrollbar-thumb {
-  background: rgba(212, 175, 90, 0.35);
+.locus-scroll::-webkit-scrollbar-thumb {
+  background: rgba(236, 236, 232, 0.16);
   border-radius: 99px;
 }
-.loom-scroll::-webkit-scrollbar-track {
+.locus-scroll::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.cinema-disc {
-  clip-path: circle(50% at 50% 50%);
-  border-radius: 50%;
-  transform: translateZ(0);
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+input[type="range"] {
+  accent-color: #d4d6d1;
 }

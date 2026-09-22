@@ -1,290 +1,310 @@
 const VERT = `#version 300 es
-in vec2 aPos;
+precision highp float;
+const vec2 POS[4] = vec2[](vec2(-1.0,-1.0), vec2(1.0,-1.0), vec2(-1.0,1.0), vec2(1.0,1.0));
 out vec2 vUv;
 void main() {
-  vUv = aPos * 0.5 + 0.5;
-  gl_Position = vec4(aPos, 0.0, 1.0);
-}
-`;
+  vec2 p = POS[gl_VertexID];
+  vUv = p * 0.5 + 0.5;
+  gl_Position = vec4(p, 0.0, 1.0);
+}`;
 
 const FRAG = `#version 300 es
 precision highp float;
-uniform sampler2D uA;
-uniform sampler2D uB;
-uniform float uBlend;
-uniform float uRot;
-uniform float uZoom;
+uniform sampler2D uTexA;
+uniform sampler2D uTexB;
 uniform float uFolds;
-uniform float uOffset;
-uniform float uHue;
-uniform float uPulse;
-uniform float uTime;
-uniform float uRefold;
+uniform float uSpin;
+uniform float uZoom;
+uniform float uMix;
+uniform float uBlend;
+uniform float uIsolate;
+uniform float uChroma;
 uniform float uVignette;
-uniform vec2 uRes;
+uniform float uFlare;
+uniform float uHasB;
 in vec2 vUv;
-out vec4 fragColor;
+out vec4 frag;
 
-vec3 rgb2hsv(vec3 c) {
-  vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
-  vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
-  vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
-  float d = q.x - min(q.w, q.y);
-  float e = 1.0e-10;
-  return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
-}
-vec3 hsv2rgb(vec3 c) {
-  vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
-  vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
-  return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+vec3 hueShift(vec3 c, float a) {
+  float u = cos(a);
+  float w = sin(a);
+  mat3 m = mat3(
+    0.299 + 0.701*u + 0.168*w, 0.587 - 0.587*u + 0.330*w, 0.114 - 0.114*u - 0.497*w,
+    0.299 - 0.299*u - 0.328*w, 0.587 + 0.413*u + 0.035*w, 0.114 - 0.114*u + 0.292*w,
+    0.299 - 0.300*u + 1.250*w, 0.587 - 0.588*u - 1.050*w, 0.114 + 0.886*u - 0.203*w
+  );
+  return clamp(m * c, 0.0, 1.0);
 }
 
-vec2 kaleido(vec2 uv, float folds, float rot, float zoom, float offset, float t) {
-  vec2 p = uv - 0.5;
-  p.x *= uRes.x / uRes.y;
+vec2 kaleido(vec2 p, float folds, float spin, float zoom) {
   float r = length(p);
-  float a = atan(p.y, p.x) + rot;
-  if (folds >= 2.0) {
-    float fold = 3.14159265 / folds;
-    a = mod(a + 3.14159265 * 8.0, fold * 2.0);
-    if (a > fold) a = fold * 2.0 - a;
+  float sector = 3.141592653589793 / max(folds, 2.0);
+  float a = atan(p.y, p.x) + spin;
+  a = abs(mod(a, 2.0 * sector) - sector);
+  vec2 uv = vec2(cos(a), sin(a)) * r * zoom * 0.5 + 0.5;
+  return clamp(uv, vec2(0.001), vec2(0.999));
+}
+
+vec3 sampleAt(sampler2D tex, vec2 uv) {
+  return texture(tex, uv).rgb;
+}
+
+vec3 fuse(vec3 a, vec3 b, float mixv, float blend, float r) {
+  if (blend < 0.5) return mix(a, b, mixv);
+  if (blend < 1.5) return clamp(a + b * mixv, 0.0, 1.0);
+  if (blend < 2.5) return mix(a, a * b, mixv);
+  if (blend < 3.5) return mix(a, abs(a - b), mixv);
+  if (blend < 4.5) {
+    float w = smoothstep(0.28, 0.78, r) * mixv;
+    return mix(a, b, w);
   }
-  float z = zoom * (1.0 + 0.05 * sin(t * 1.3));
-  vec2 q = vec2(cos(a), sin(a)) * (r / max(z, 0.15));
-  q += vec2(offset * 0.05 * sin(t * 0.71), offset * 0.05 * cos(t * 0.53));
-  q.x /= uRes.x / uRes.y;
-  return q + 0.5;
+  float luma = dot(a, vec3(0.299, 0.587, 0.114));
+  return mix(a, b, clamp(luma * mixv * 1.4, 0.0, 1.0));
 }
 
 void main() {
-  vec2 uv = vec2(vUv.x, 1.0 - vUv.y);
-  float folds = uRefold > 0.5 ? max(uFolds, 2.0) : 0.0;
-  vec2 pa = kaleido(uv, folds, uRot, uZoom, uOffset, uTime);
-  vec2 pb = kaleido(uv, folds, uRot, uZoom, uOffset, uTime);
-  vec3 ca = texture(uA, clamp(pa, 0.0, 1.0)).rgb;
-  vec3 cb = texture(uB, clamp(pb, 0.0, 1.0)).rgb;
-  vec3 col = mix(ca, cb, clamp(uBlend, 0.0, 1.0));
-  vec3 hsv = rgb2hsv(col);
-  hsv.x = fract(hsv.x + uHue);
-  hsv.z *= 1.0 + uPulse * 0.12 * sin(uTime * 2.2);
-  col = hsv2rgb(hsv);
+  vec2 p = vUv * 2.0 - 1.0;
+  float r = length(p);
+  float mask = 1.0 - smoothstep(0.985, 1.0, r);
+  if (mask <= 0.0) {
+    frag = vec4(0.0);
+    return;
+  }
 
-  vec2 c = uv - 0.5;
-  c.x *= uRes.x / uRes.y;
-  float r = length(c);
-  float vig = mix(1.0, smoothstep(0.78, 0.28, r), uVignette);
-  col *= vig;
-  float ring = smoothstep(0.492, 0.478, r) * smoothstep(0.452, 0.468, r);
-  col = mix(col, vec3(0.83, 0.69, 0.35), ring * 0.55);
-  float mask = smoothstep(0.52, 0.495, r);
-  fragColor = vec4(col, mask);
+  float folds = uFolds;
+  float spin = uSpin;
+  float zoom = uZoom;
+  float chroma = uChroma;
+  float flare = uFlare;
+  float vigAmt = uVignette;
+
+  if (uIsolate > 0.5 && uIsolate < 1.5) { chroma = 0.0; flare = 0.0; }
+  if (uIsolate > 1.5 && uIsolate < 2.5) { folds = 2.0; chroma = 0.0; flare = 0.0; zoom = 1.0; }
+  if (uIsolate > 2.5 && uIsolate < 3.5) { folds = 2.0; chroma = 0.0; flare = 0.0; spin = 0.0; }
+  if (uIsolate > 3.5 && uIsolate < 4.5) { folds = 2.0; flare = 0.0; spin = 0.0; zoom = 1.0; }
+  if (uIsolate > 4.5 && uIsolate < 5.5) { folds = 2.0; chroma = 0.0; flare = 0.0; spin = 0.0; zoom = 1.0; }
+  if (uIsolate > 5.5) { folds = 2.0; chroma = 0.0; spin = 0.0; zoom = 1.0; }
+
+  vec2 uv = kaleido(p, folds, spin, zoom);
+  vec3 ca = sampleAt(uTexA, uv);
+  vec3 c = ca;
+  if (uHasB > 0.5) {
+    vec3 cb = sampleAt(uTexB, uv);
+    c = fuse(ca, cb, clamp(uMix, 0.0, 1.0), uBlend, r);
+  }
+  if (chroma > 0.0001) c = hueShift(c, chroma * 6.2831853);
+  if (flare > 0.0001) c += flare * exp(-r * r * 14.0) * vec3(1.0, 0.86, 0.62);
+  float vig = mix(1.0, smoothstep(1.02, 0.42, r), clamp(vigAmt, 0.0, 1.0));
+  c *= vig;
+  frag = vec4(clamp(c, 0.0, 1.0), mask);
+}`;
+
+function mediaSize(el: TexImageSource): [number, number] {
+  if (el instanceof HTMLVideoElement) return [el.videoWidth || 0, el.videoHeight || 0];
+  if (el instanceof HTMLImageElement) return [el.naturalWidth || 0, el.naturalHeight || 0];
+  if (el instanceof HTMLCanvasElement) return [el.width, el.height];
+  return [0, 0];
 }
-`;
 
-export type LoomUniforms = {
-  blend: number;
-  rot: number;
-  zoom: number;
-  folds: number;
-  offset: number;
-  hue: number;
-  pulse: number;
-  time: number;
-  refold: boolean;
-  vignette: number;
-};
-
-function compile(gl: WebGL2RenderingContext, type: number, src: string) {
+function compile(gl: WebGL2RenderingContext, type: number, src: string): WebGLShader {
   const sh = gl.createShader(type);
-  if (!sh) throw new Error("shader");
+  if (!sh) throw new Error("shader alloc");
   gl.shaderSource(sh, src);
   gl.compileShader(sh);
   if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
-    const log = gl.getShaderInfoLog(sh);
+    const log = gl.getShaderInfoLog(sh) ?? "compile failed";
     gl.deleteShader(sh);
-    throw new Error(log || "compile");
+    throw new Error(log);
   }
   return sh;
 }
 
-function sourceSize(image: TexImageSource): [number, number] {
-  if (image instanceof HTMLVideoElement) return [image.videoWidth, image.videoHeight];
-  if (image instanceof HTMLImageElement) return [image.naturalWidth, image.naturalHeight];
-  if (image instanceof HTMLCanvasElement) return [image.width, image.height];
-  if (typeof ImageBitmap !== "undefined" && image instanceof ImageBitmap) {
-    return [image.width, image.height];
-  }
-  return [0, 0];
+function makeTex(gl: WebGL2RenderingContext) {
+  const tex = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, tex);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  return tex;
 }
 
+export type LoomParams = {
+  folds: number;
+  spin: number;
+  zoom: number;
+  mix: number;
+  blend: number;
+  isolate: number;
+  chroma: number;
+  vignette: number;
+  flare: number;
+};
+
 export class LoomGL {
-  gl: WebGL2RenderingContext;
-  program: WebGLProgram;
-  vao: WebGLVertexArrayObject;
-  texA: WebGLTexture;
-  texB: WebGLTexture;
-  loc: Record<string, WebGLUniformLocation | null>;
-  destroyed = false;
-  private texW = [0, 0];
-  private texH = [0, 0];
+  readonly canvas: HTMLCanvasElement;
+  private gl: WebGL2RenderingContext | null;
+  private prog: WebGLProgram | null = null;
+  private vao: WebGLVertexArrayObject | null = null;
+  private texA: WebGLTexture | null = null;
+  private texB: WebGLTexture | null = null;
+  private locs: Record<string, WebGLUniformLocation | null> = {};
+  private mediaA: TexImageSource | null = null;
+  private mediaB: TexImageSource | null = null;
+  private aw = 0;
+  private ah = 0;
+  private bw = 0;
+  private bh = 0;
+  private params: LoomParams = {
+    folds: 8,
+    spin: 0,
+    zoom: 1,
+    mix: 0,
+    blend: 0,
+    isolate: 0,
+    chroma: 0,
+    vignette: 1,
+    flare: 0,
+  };
 
   constructor(canvas: HTMLCanvasElement) {
+    this.canvas = canvas;
     const gl = canvas.getContext("webgl2", {
-      premultipliedAlpha: false,
       alpha: true,
-      antialias: true,
+      antialias: false,
+      depth: false,
+      stencil: false,
+      premultipliedAlpha: true,
+      preserveDrawingBuffer: false,
       powerPreference: "high-performance",
     });
-    if (!gl) throw new Error("WebGL2 unavailable");
     this.gl = gl;
+    if (!gl) return;
     const vs = compile(gl, gl.VERTEX_SHADER, VERT);
     const fs = compile(gl, gl.FRAGMENT_SHADER, FRAG);
     const prog = gl.createProgram();
-    if (!prog) throw new Error("program");
+    if (!prog) throw new Error("program alloc");
     gl.attachShader(prog, vs);
     gl.attachShader(prog, fs);
-    gl.bindAttribLocation(prog, 0, "aPos");
     gl.linkProgram(prog);
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
-      throw new Error(gl.getProgramInfoLog(prog) || "link");
-    }
     gl.deleteShader(vs);
     gl.deleteShader(fs);
-    this.program = prog;
-
-    const buf = gl.createBuffer();
-    const vao = gl.createVertexArray();
-    if (!vao || !buf) throw new Error("vao");
-    this.vao = vao;
-    gl.bindVertexArray(vao);
-    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-    gl.bufferData(
-      gl.ARRAY_BUFFER,
-      new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]),
-      gl.STATIC_DRAW,
-    );
-    gl.enableVertexAttribArray(0);
-    gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
-
-    this.texA = this.makeTex();
-    this.texB = this.makeTex();
-    this.loc = {
-      uA: gl.getUniformLocation(prog, "uA"),
-      uB: gl.getUniformLocation(prog, "uB"),
-      uBlend: gl.getUniformLocation(prog, "uBlend"),
-      uRot: gl.getUniformLocation(prog, "uRot"),
-      uZoom: gl.getUniformLocation(prog, "uZoom"),
-      uFolds: gl.getUniformLocation(prog, "uFolds"),
-      uOffset: gl.getUniformLocation(prog, "uOffset"),
-      uHue: gl.getUniformLocation(prog, "uHue"),
-      uPulse: gl.getUniformLocation(prog, "uPulse"),
-      uTime: gl.getUniformLocation(prog, "uTime"),
-      uRefold: gl.getUniformLocation(prog, "uRefold"),
-      uVignette: gl.getUniformLocation(prog, "uVignette"),
-      uRes: gl.getUniformLocation(prog, "uRes"),
-    };
-  }
-
-  private makeTex() {
-    const gl = this.gl;
-    const t = gl.createTexture();
-    if (!t) throw new Error("tex");
-    gl.bindTexture(gl.TEXTURE_2D, t);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    gl.texImage2D(
-      gl.TEXTURE_2D,
-      0,
-      gl.RGBA,
-      1,
-      1,
-      0,
-      gl.RGBA,
-      gl.UNSIGNED_BYTE,
-      new Uint8Array([8, 7, 12, 255]),
-    );
-    return t;
-  }
-
-  upload(slot: 0 | 1, image: TexImageSource) {
-    const gl = this.gl;
-    const tex = slot === 0 ? this.texA : this.texB;
-    gl.bindTexture(gl.TEXTURE_2D, tex);
-    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 0);
-    const [w, h] = sourceSize(image);
-    if (w > 0 && h > 0 && this.texW[slot] === w && this.texH[slot] === h) {
-      gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, gl.RGBA, gl.UNSIGNED_BYTE, image);
-      return;
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      throw new Error(gl.getProgramInfoLog(prog) ?? "link failed");
     }
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
-    if (w > 0 && h > 0) {
-      this.texW[slot] = w;
-      this.texH[slot] = h;
+    this.prog = prog;
+    this.vao = gl.createVertexArray();
+    this.texA = makeTex(gl);
+    this.texB = makeTex(gl);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
+    for (const name of [
+      "uTexA",
+      "uTexB",
+      "uFolds",
+      "uSpin",
+      "uZoom",
+      "uMix",
+      "uBlend",
+      "uIsolate",
+      "uChroma",
+      "uVignette",
+      "uFlare",
+      "uHasB",
+    ]) {
+      this.locs[name] = gl.getUniformLocation(prog, name);
     }
-  }
-
-  resize(w: number, h: number) {
-    const gl = this.gl;
-    const c = gl.canvas as HTMLCanvasElement;
-    if (c.width !== w || c.height !== h) {
-      c.width = w;
-      c.height = h;
-    }
-    gl.viewport(0, 0, w, h);
-  }
-
-  draw(u: LoomUniforms) {
-    const gl = this.gl;
-    gl.useProgram(this.program);
-    gl.bindVertexArray(this.vao);
-    gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, this.texA);
-    gl.uniform1i(this.loc.uA, 0);
-    gl.activeTexture(gl.TEXTURE1);
-    gl.bindTexture(gl.TEXTURE_2D, this.texB);
-    gl.uniform1i(this.loc.uB, 1);
-    gl.uniform1f(this.loc.uBlend, u.blend);
-    gl.uniform1f(this.loc.uRot, u.rot);
-    gl.uniform1f(this.loc.uZoom, u.zoom);
-    gl.uniform1f(this.loc.uFolds, u.folds);
-    gl.uniform1f(this.loc.uOffset, u.offset);
-    gl.uniform1f(this.loc.uHue, u.hue);
-    gl.uniform1f(this.loc.uPulse, u.pulse);
-    gl.uniform1f(this.loc.uTime, u.time);
-    gl.uniform1f(this.loc.uRefold, u.refold ? 1 : 0);
-    gl.uniform1f(this.loc.uVignette, u.vignette);
-    const c = gl.canvas as HTMLCanvasElement;
-    gl.uniform2f(this.loc.uRes, c.width, c.height);
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+    gl.clearColor(0, 0, 0, 0);
+  }
+
+  get ok(): boolean {
+    return this.gl !== null && this.prog !== null;
+  }
+
+  setSource(media: TexImageSource | null) {
+    this.mediaA = media;
+  }
+
+  setSourceB(media: TexImageSource | null) {
+    this.mediaB = media;
+  }
+
+  setParams(p: LoomParams) {
+    this.params = p;
+  }
+
+  resize() {
+    const canvas = this.canvas;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = Math.max(1, Math.round(canvas.clientWidth * dpr));
+    const h = Math.max(1, Math.round(canvas.clientHeight * dpr));
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width = w;
+      canvas.height = h;
+    }
+    this.gl?.viewport(0, 0, w, h);
+  }
+
+  private upload(unit: number, tex: WebGLTexture | null, media: TexImageSource | null, wh: [number, number]) {
+    const gl = this.gl;
+    if (!gl || !tex || !media) return [0, 0] as [number, number];
+    const [w, h] = mediaSize(media);
+    if (w < 2 || h < 2) return wh;
+    gl.activeTexture(gl.TEXTURE0 + unit);
+    gl.bindTexture(gl.TEXTURE_2D, tex);
+    if (w !== wh[0] || h !== wh[1]) {
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, media);
+      return [w, h] as [number, number];
+    }
+    gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, gl.RGBA, gl.UNSIGNED_BYTE, media);
+    return wh;
+  }
+
+  frame() {
+    const gl = this.gl;
+    const prog = this.prog;
+    if (!gl || !prog) return;
+    this.resize();
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    if (!this.mediaA) return;
+    const a = this.upload(0, this.texA, this.mediaA, [this.aw, this.ah]);
+    this.aw = a[0];
+    this.ah = a[1];
+    const hasB = Boolean(this.mediaB);
+    if (hasB) {
+      const b = this.upload(1, this.texB, this.mediaB, [this.bw, this.bh]);
+      this.bw = b[0];
+      this.bh = b[1];
+    }
+    gl.useProgram(prog);
+    gl.bindVertexArray(this.vao);
+    gl.uniform1i(this.locs.uTexA, 0);
+    gl.uniform1i(this.locs.uTexB, 1);
+    gl.uniform1f(this.locs.uFolds, this.params.folds);
+    gl.uniform1f(this.locs.uSpin, this.params.spin);
+    gl.uniform1f(this.locs.uZoom, this.params.zoom);
+    gl.uniform1f(this.locs.uMix, this.params.mix);
+    gl.uniform1f(this.locs.uBlend, this.params.blend);
+    gl.uniform1f(this.locs.uIsolate, this.params.isolate);
+    gl.uniform1f(this.locs.uChroma, this.params.chroma);
+    gl.uniform1f(this.locs.uVignette, this.params.vignette);
+    gl.uniform1f(this.locs.uFlare, this.params.flare);
+    gl.uniform1f(this.locs.uHasB, hasB ? 1 : 0);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   }
 
-  destroy() {
-    if (this.destroyed) return;
-    this.destroyed = true;
+  dispose() {
     const gl = this.gl;
-    gl.deleteTexture(this.texA);
-    gl.deleteTexture(this.texB);
-    gl.deleteProgram(this.program);
-    gl.deleteVertexArray(this.vao);
+    if (!gl) return;
+    if (this.texA) gl.deleteTexture(this.texA);
+    if (this.texB) gl.deleteTexture(this.texB);
+    if (this.vao) gl.deleteVertexArray(this.vao);
+    if (this.prog) gl.deleteProgram(this.prog);
+    this.texA = null;
+    this.texB = null;
+    this.vao = null;
+    this.prog = null;
+    this.gl = null;
   }
-}
-
-const imageCache = new Map<string, Promise<HTMLImageElement>>();
-
-export function loadImage(src: string): Promise<HTMLImageElement> {
-  const hit = imageCache.get(src);
-  if (hit) return hit;
-  const p = new Promise<HTMLImageElement>((resolve, reject) => {
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.onload = () => resolve(img);
-    img.onerror = () => reject(new Error(`image ${src}`));
-    img.src = src;
-  });
-  imageCache.set(src, p);
-  return p;
 }

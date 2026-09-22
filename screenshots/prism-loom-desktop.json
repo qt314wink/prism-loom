@@ -1,0 +1,35 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Prism Loom",
+      "hasCanvas": true,
+      "bodyTextLen": 885,
+      "bodyTextHash": "4895c388b451ca2f999a49d8596a9582945f121a60407c5b67b50b5570a6b831",
+      "bodyTextPrefix": "Prism Loom Loom · live fold Space play · arrows skip · M mute · ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/prism-loom-desktop.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Prism Loom",
+      "hasCanvas": true,
+      "bodyTextLen": 218,
+      "bodyTextHash": "1525fdcc21feaf5083a318073c6e155777ed202a9e15f1a7582f66ff561996fc",
+      "bodyTextPrefix": "Prism Loom Loom · live fold Orchid Veil · Drift · 00:00.41 Loom ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/prism-loom-desktop-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "verdictFile": "/workspace/screenshots/prism-loom-desktop.json"
+}

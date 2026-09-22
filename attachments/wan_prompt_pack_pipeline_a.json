@@ -1,0 +1,494 @@
+{
+  "pipeline": "A: Image Generation & Analysis",
+  "description": "Feed Reverse Prompt Engineer and Prompt Lab v2. Validate image_semantics.json.",
+  "prompts": [
+    {
+      "id": "A-01",
+      "title": "Copper Oxidation Study",
+      "positive": "macro photography, copper patina, verdigris bleeding into linen texture, subsurface scattering, 8k material scan, warm studio lighting, shallow depth of field, tactile surface detail, time-worn beauty",
+      "negative": "clean metal, studio lighting, synthetic sheen, plastic texture, perfect symmetry, digital smoothness, cold blue tones",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "oxidized",
+          "depth": "bas-relief",
+          "light_response": [
+            "subsurface-scatter",
+            "specular"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.7,
+          "entropy_signature": [
+            "oxidation",
+            "decay"
+          ],
+          "narrative_phase": "senescence"
+        },
+        "shader_technique": {
+          "primary_technique": "fbm_noise",
+          "fallback_strategy": "static_png"
+        },
+        "visual_mode": "aurora",
+        "morphism_class": "woodmorphism"
+      },
+      "token_bindings": [
+        "--copper-dark",
+        "--copper-light",
+        "--linen",
+        "--ease-weave",
+        "feTurbulence-leather-grain"
+      ],
+      "socratic_receipts": [
+        1,
+        9,
+        13,
+        25
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 30,
+        "cfg": 7.5,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "A-02",
+      "title": "Denim Weave Under Tension",
+      "positive": "textile micrograph, denim warp and weft, indigo dye pooling in crevices, thread stress highlights, tactile depth, cotton fiber detail, warm side lighting, material honesty, labor visible",
+      "negative": "flat fabric, synthetic sheen, polyester, printed pattern, vector clean, digital gradient, uniform color",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "woven",
+          "depth": "through-cut",
+          "light_response": [
+            "diffuse",
+            "anisotropic"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.2,
+          "entropy_signature": [
+            "tension"
+          ],
+          "narrative_phase": "peak"
+        },
+        "shader_technique": {
+          "primary_technique": "anisotropy",
+          "fallback_strategy": "css_filter"
+        },
+        "visual_mode": "editorial",
+        "morphism_class": "papermorphism"
+      },
+      "token_bindings": [
+        "--denim",
+        "--denim-deep",
+        "--dust",
+        "--ease-loom",
+        "feTurbulence-denim-texture"
+      ],
+      "socratic_receipts": [
+        2,
+        5,
+        17,
+        26
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 28,
+        "cfg": 7.0,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "A-03",
+      "title": "Holographic Authentication Failure",
+      "positive": "prismatic glass fracture, RGB chromatic aberration, corrupted QR code fragments, glitch bloom, spectral ink bleeding, security hologram torn, iridescent shards, data corruption made beautiful, cyberpunk aesthetic",
+      "negative": "clean hologram, ordered grid, intact security seal, smooth glass, uniform refraction, pristine surface, trustworthy interface",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "glazed",
+          "depth": "fracture",
+          "light_response": [
+            "chromatic-aberration",
+            "iridescent",
+            "subsurface-scatter"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.85,
+          "authentication_state": "compromised",
+          "entropy_signature": [
+            "fracture",
+            "bloom",
+            "drift"
+          ],
+          "narrative_phase": "corruption"
+        },
+        "shader_technique": {
+          "primary_technique": "domain_warping",
+          "fallback_strategy": "css_gradient"
+        },
+        "visual_mode": "holographic",
+        "morphism_class": "glassmorphism"
+      },
+      "token_bindings": [
+        "--void",
+        "--cyan",
+        "--magenta",
+        "--violet",
+        "--ease-fracture",
+        "domain-warp-displacement"
+      ],
+      "socratic_receipts": [
+        3,
+        8,
+        11,
+        21,
+        28
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 35,
+        "cfg": 8.0,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "A-04",
+      "title": "Embroidered Circuit Board",
+      "positive": "copper conductive thread embroidered onto linen substrate, soft circuits, e-textile detail, sage and copper palette, craft meets code, hand-stitched traces, LED bead components, warm ambient lighting, maker aesthetic",
+      "negative": "rigid silicon PCB, cold blue lighting, machine-only fabrication, solder joints, industrial sterile, hard edges, synthetic material only",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "embroidered",
+          "depth": "inlaid",
+          "light_response": [
+            "diffuse",
+            "specular"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.1,
+          "entropy_signature": [
+            "growth"
+          ],
+          "narrative_phase": "germination"
+        },
+        "shader_technique": {
+          "primary_technique": "periodic_functions",
+          "fallback_strategy": "svg_filter"
+        },
+        "visual_mode": "solarpunk_grimoire",
+        "morphism_class": "woodmorphism"
+      },
+      "token_bindings": [
+        "--copper",
+        "--sage",
+        "--linen",
+        "--embroidery",
+        "feSpecularLighting-emboss-stitch"
+      ],
+      "socratic_receipts": [
+        4,
+        6,
+        16,
+        20,
+        23
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 30,
+        "cfg": 7.5,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "A-05",
+      "title": "Aurora Domain Warp",
+      "positive": "night sky aurora borealis, fbm noise ribbons flowing, violet coral cyan gold palette, fluid light ribbons, atmospheric refraction, soft glow, natural phenomenon, long exposure photography feel, ethereal movement",
+      "negative": "stars, hard edges, geometric shapes, digital grid, pixelated, static image, artificial lighting, studio setup",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "glazed",
+          "depth": "bas-relief",
+          "light_response": [
+            "iridescent",
+            "subsurface-scatter"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.0,
+          "entropy_signature": [
+            "bloom"
+          ],
+          "narrative_phase": "bloom"
+        },
+        "shader_technique": {
+          "primary_technique": "domain_warping",
+          "secondary_techniques": [
+            "fbm_noise"
+          ],
+          "fallback_strategy": "css_gradient"
+        },
+        "visual_mode": "aurora",
+        "morphism_class": "glassmorphism"
+      },
+      "token_bindings": [
+        "--violet",
+        "--cyan",
+        "--copper-light",
+        "--ease-drift",
+        "domain-warp-displacement"
+      ],
+      "socratic_receipts": [
+        5,
+        12,
+        15,
+        27
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 32,
+        "cfg": 7.5,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "A-06",
+      "title": "Risograph Grain Mandala",
+      "positive": "sacred geometry mandala, risograph halftone dots, soy ink texture, misregistration double exposure, warm paper substrate, mechanical spirituality, imperfect symmetry, printmaking aesthetic, grainy texture, vintage reproduction",
+      "negative": "vector clean, digital smooth, perfect symmetry, RGB gradient, screen display only, crisp edges, uniform color, synthetic perfection",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "woven",
+          "depth": "embossed",
+          "light_response": [
+            "diffuse"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.3,
+          "entropy_signature": [
+            "drift"
+          ],
+          "narrative_phase": "peak"
+        },
+        "shader_technique": {
+          "primary_technique": "palette_cycling",
+          "fallback_strategy": "svg_filter"
+        },
+        "visual_mode": "risograph",
+        "morphism_class": "papermorphism"
+      },
+      "token_bindings": [
+        "--copper",
+        "--dust",
+        "--linen",
+        "--ease-settle",
+        "risograph-grain-filter"
+      ],
+      "socratic_receipts": [
+        7,
+        14,
+        22,
+        24
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 28,
+        "cfg": 7.0,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "A-07",
+      "title": "Wood Grain Under Glass",
+      "positive": "woodmorphism UI element, oak grain beneath frosted glass, refraction caustics, warm shadow depth, material honesty, digital interface with natural substrate, tactile digital, soft focus edges, premium material design",
+      "negative": "flat UI, synthetic material, plastic texture, sharp corners, no depth, default OS chrome, cold interface, machine precision only",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "carved",
+          "depth": "veneer",
+          "light_response": [
+            "translucent",
+            "diffuse"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.0,
+          "entropy_signature": [],
+          "narrative_phase": "germination"
+        },
+        "shader_technique": {
+          "primary_technique": "ray_marching",
+          "fallback_strategy": "css_filter"
+        },
+        "visual_mode": "editorial",
+        "morphism_class": "woodmorphism"
+      },
+      "token_bindings": [
+        "--wood",
+        "--glass",
+        "--dust-light",
+        "--ease-spring",
+        "ambient-glass-filter"
+      ],
+      "socratic_receipts": [
+        2,
+        6,
+        10,
+        19
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 30,
+        "cfg": 7.5,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "A-08",
+      "title": "Stained Glass Voronoi",
+      "positive": "cathedral stained glass window, jewel-tone cells, lead came edges, projected caustics on stone floor, sacred light, amber ruby sapphire emerald, gothic architecture detail, light transmission, religious atmosphere, handcrafted glass",
+      "negative": "flat color, digital gradient, screen display, LED panel, synthetic light source, modern window, clean lines, minimal design",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "glazed",
+          "depth": "inlaid",
+          "light_response": [
+            "translucent",
+            "chromatic-aberration",
+            "specular"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.1,
+          "entropy_signature": [
+            "bloom"
+          ],
+          "narrative_phase": "peak"
+        },
+        "shader_technique": {
+          "primary_technique": "voronoi",
+          "fallback_strategy": "static_png"
+        },
+        "visual_mode": "aurora",
+        "morphism_class": "jewelmorphism"
+      },
+      "token_bindings": [
+        "--copper-light",
+        "--violet",
+        "--cyan",
+        "--denim",
+        "voronoi-edge-glow"
+      ],
+      "socratic_receipts": [
+        5,
+        12,
+        15,
+        22
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 32,
+        "cfg": 7.5,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "A-09",
+      "title": "Mochi Compression Study",
+      "positive": "claymorphism UI element, soft body physics deformation, spring-mass interaction, pastel palette, haptic indentation visible, 3D rounded form, squishy material, tactile digital interface, playful interaction, material depth",
+      "negative": "sharp corners, rigid form, flat design, minimalism, hard shadow, angular geometry, serious tone, corporate aesthetic",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "glazed",
+          "depth": "embossed",
+          "light_response": [
+            "diffuse",
+            "subsurface-scatter"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.0,
+          "entropy_signature": [
+            "compression"
+          ],
+          "narrative_phase": "germination"
+        },
+        "shader_technique": {
+          "primary_technique": "sdf_blob",
+          "fallback_strategy": "css_filter"
+        },
+        "visual_mode": "aurora",
+        "morphism_class": "claymorphism"
+      },
+      "token_bindings": [
+        "--sage",
+        "--dust-light",
+        "--ease-spring",
+        "spring-physics-params"
+      ],
+      "socratic_receipts": [
+        13,
+        17,
+        18,
+        26
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 28,
+        "cfg": 7.0,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "A-10",
+      "title": "Void Typography",
+      "positive": "editorial typography specimen, dust-light text on deep void background, copper accent details, generous leading, classical serif typeface, whitespace as design element, museum quality print, high contrast, timeless typography",
+      "negative": "black on white, sans-serif only, cramped leading, default font, screen optimized, modern grotesque, loud design, decorative only",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "matte",
+          "depth": "intaglio",
+          "light_response": [
+            "diffuse"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.0,
+          "entropy_signature": [
+            "silence"
+          ],
+          "narrative_phase": "silence"
+        },
+        "shader_technique": {
+          "primary_technique": "periodic_functions",
+          "fallback_strategy": "static_png"
+        },
+        "visual_mode": "editorial",
+        "morphism_class": "siliconmorphism"
+      },
+      "token_bindings": [
+        "--void",
+        "--dust-light",
+        "--copper",
+        "--font-display",
+        "--ease-out"
+      ],
+      "socratic_receipts": [
+        1,
+        9,
+        12,
+        25,
+        30
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 25,
+        "cfg": 7.0,
+        "sampler": "dpmpp_2m"
+      }
+    }
+  ]
+}

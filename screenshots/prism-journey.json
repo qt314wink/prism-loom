@@ -1,0 +1,35 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Prism Loom",
+      "hasCanvas": true,
+      "bodyTextLen": 1473,
+      "bodyTextHash": "eaea724dc4ad75b9ea584adbd12da038c5515e28b08d7c5c2a4d758c03a18045",
+      "bodyTextPrefix": "Prism Loom Play one baked loop. Learn its unique law. Space play",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/prism-journey.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Prism Loom",
+      "hasCanvas": true,
+      "bodyTextLen": 753,
+      "bodyTextHash": "03ff4e7a12c14b01387a811ed5053534e7e99562b37b4d151d60081a1b38d91e",
+      "bodyTextPrefix": "Prism Loom Play one baked loop. Learn its unique law. 1 Watch 2 ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/prism-journey-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "verdictFile": "/workspace/screenshots/prism-journey.json"
+}

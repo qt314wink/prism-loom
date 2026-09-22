@@ -1,0 +1,98 @@
+{
+  "schema_version": "0.1.0",
+  "order_id": "codex:shader-gallery:projection-leap-proof:v0.1",
+  "repository": {
+    "full_name": "MelodicBloom/shader-gallery",
+    "base_sha": "22162307b9f8ee840515169c2dcf710f083aaa74",
+    "implementation_branch": "feature/projection-leap-proof-v0",
+    "research_branch": "research/projection-science",
+    "research_mode": "read_only",
+    "package_root": "packages/shader-library-v1/source"
+  },
+  "authorization": {
+    "authorized_through": "PL-PROOF-2",
+    "not_authorized": [
+      "PL-07",
+      "PL-08",
+      "root integration",
+      "deployment",
+      "merge",
+      "release",
+      "multi-shader",
+      "product UI"
+    ]
+  },
+  "fixture": {
+    "preferred_shader_slug": "materials/thin-film",
+    "preserve_shader_source": true,
+    "preserve_manifest_identity": true,
+    "webgl_contexts_max": 1
+  },
+  "allowed_paths_before_gate_1": [
+    "packages/shader-library-v1/source/experiments/projection-leap-v0/**",
+    "packages/shader-library-v1/source/docs/projection-leap/**",
+    "packages/shader-library-v1/source/tools/projection-leap-*.mjs",
+    "packages/shader-library-v1/source/package.json"
+  ],
+  "additional_allowed_paths_after_gate_1": [
+    "packages/shader-library-v1/source/tests/projection-leap-v0/**"
+  ],
+  "forbidden_paths": [
+    "library-v1/**",
+    "abalone/**",
+    "aurora/**",
+    "docs/**",
+    "README.md",
+    ".github/**",
+    "packages/shader-library-v1/source/src/core/ShaderPlayer.js",
+    "packages/shader-library-v1/source/manifest.json",
+    "packages/shader-library-v1/source/shaders/**",
+    "packages/shader-library-v1/source/schemas/**"
+  ],
+  "state_domains": {
+    "C": "canonical material identity and adjustable material state",
+    "W": "intrinsic semantic/world state",
+    "R": "representation/embedding state",
+    "O": "observer/camera state",
+    "V": "observer-local view state; disabled in v0",
+    "L": "local modifiers; disabled in v0",
+    "G": "governance, scopes, receipts, replay"
+  },
+  "digests": {
+    "cwDigest": [
+      "C",
+      "W"
+    ],
+    "viewDigest": [
+      "R",
+      "O",
+      "V"
+    ],
+    "stateDigest": [
+      "C",
+      "W",
+      "R",
+      "O",
+      "V",
+      "L"
+    ],
+    "algorithm": "SHA-256"
+  },
+  "gates": {
+    "PL-01": "canonical identity unchanged across projection",
+    "PL-02": "semantic anchor identity/address persists",
+    "PL-03": "observer-only change leaves C/W digest unchanged",
+    "PL-04": "A\u2192B\u2192A restores governed state identically",
+    "PL-05": "operations mutate declared domains only",
+    "PL-06": "serialized operations replay to identical terminal digest",
+    "PL-09": "state restores without hidden session memory",
+    "PL-10": "two independent clean runs yield identical normalized governed digest"
+  },
+  "handback_decisions": [
+    "READY_FOR_HUMAN_REVIEW",
+    "BLOCKED_BY_INVARIANT_FAILURE",
+    "BLOCKED_BY_BASE_DRIFT",
+    "BLOCKED_BY_ENVIRONMENT",
+    "BLOCKED_BY_SCOPE_COLLISION"
+  ]
+}

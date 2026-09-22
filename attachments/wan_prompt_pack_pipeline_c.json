@@ -1,0 +1,504 @@
+{
+  "pipeline": "C: Socratic Inquiry \u2192 Website Style",
+  "description": "Translate 30-question recursion into visual outputs and inspectable receipts.",
+  "prompts": [
+    {
+      "id": "C-01",
+      "title": "The Question Index",
+      "positive": "monospace question index interface, copper numbered questions 1-30, dust-light answers on void background, editorial hierarchy, generous whitespace, museum quality typography, Socratic method visualization, philosophical inquiry UI, dark academic aesthetic",
+      "negative": "FAQ accordion, bright colors, sans-serif only, cramped layout, commercial FAQ, generic help center, bubbly design, light theme",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "matte",
+          "depth": "intaglio",
+          "light_response": [
+            "diffuse"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.0,
+          "entropy_signature": [
+            "silence"
+          ],
+          "narrative_phase": "silence"
+        },
+        "shader_technique": {
+          "primary_technique": "periodic_functions",
+          "fallback_strategy": "static_png"
+        },
+        "visual_mode": "editorial",
+        "morphism_class": "siliconmorphism"
+      },
+      "token_bindings": [
+        "--void",
+        "--dust-light",
+        "--copper",
+        "--font-display",
+        "--font-mono",
+        "--ease-out"
+      ],
+      "socratic_receipts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 25,
+        "cfg": 7.0,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "C-02",
+      "title": "Circadian Color Test",
+      "positive": "animated color transition, dawn sage green, noon copper gold, dusk denim blue, night deep void, smooth gradient animation, time-based color scheme, circadian rhythm visualization, 24-hour color cycle, biological clock interface, warm to cool transition",
+      "negative": "static palette, no animation, single color scheme, ignores time, default dark mode only, no circadian awareness, flat colors",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "glazed",
+          "depth": "bas-relief",
+          "light_response": [
+            "iridescent",
+            "subsurface-scatter"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.0,
+          "entropy_signature": [
+            "bloom"
+          ],
+          "narrative_phase": "bloom"
+        },
+        "shader_technique": {
+          "primary_technique": "palette_cycling",
+          "fallback_strategy": "css_gradient"
+        },
+        "visual_mode": "aurora",
+        "morphism_class": "glassmorphism"
+      },
+      "token_bindings": [
+        "--sage",
+        "--copper",
+        "--denim",
+        "--void",
+        "--ease-drift",
+        "--ease-loom"
+      ],
+      "socratic_receipts": [
+        5,
+        12,
+        15,
+        27
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 30,
+        "cfg": 7.5,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "C-03",
+      "title": "Gesture Receipt",
+      "positive": "cursor trail physics visualization, spring constant displayed, touch heatmap overlay, elastic cursor with magnetic effect, interaction physics diagram, ergonomic feedback system, hand movement tracking, spring-damping visualization, haptic response mapping",
+      "negative": "default pointer, no feedback, static cursor, no physics, ignores ergonomics, standard OS cursor, no trail, no memory",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "glazed",
+          "depth": "embossed",
+          "light_response": [
+            "specular",
+            "subsurface-scatter"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.0,
+          "entropy_signature": [
+            "compression"
+          ],
+          "narrative_phase": "germination"
+        },
+        "shader_technique": {
+          "primary_technique": "sdf_blob",
+          "fallback_strategy": "css_filter"
+        },
+        "visual_mode": "aurora",
+        "morphism_class": "claymorphism"
+      },
+      "token_bindings": [
+        "--copper-light",
+        "--cyan",
+        "--ease-spring",
+        "spring-physics-params"
+      ],
+      "socratic_receipts": [
+        13,
+        17,
+        18,
+        26
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 28,
+        "cfg": 7.0,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "C-04",
+      "title": "Tension Grid",
+      "positive": "F-pattern gaze path visualization, copper fixation points, cyan saccade lines, eye tracking heatmap, asymmetric web layout, ergonomic composition study, reading pattern analysis, communication systems diagram, visual hierarchy science, gaze path overlay on website",
+      "negative": "centered hero, symmetric grid, ignores gaze patterns, standard centered layout, no ergonomic consideration, F-pattern unaware, Z-pattern ignored",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "matte",
+          "depth": "flat",
+          "light_response": [
+            "diffuse"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.0,
+          "entropy_signature": [
+            "tension"
+          ],
+          "narrative_phase": "peak"
+        },
+        "shader_technique": {
+          "primary_technique": "periodic_functions",
+          "fallback_strategy": "static_png"
+        },
+        "visual_mode": "editorial",
+        "morphism_class": "papermorphism"
+      },
+      "token_bindings": [
+        "--copper",
+        "--cyan",
+        "--dust",
+        "--font-mono",
+        "--ease-out"
+      ],
+      "socratic_receipts": [
+        17,
+        25,
+        26
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 25,
+        "cfg": 7.0,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "C-05",
+      "title": "Narrative Scroll Velocity",
+      "positive": "scroll-driven blur effect, fast scroll fragmented content, slow scroll crystalline detail, velocity-based content resolution, scroll speed visualization, pace as meaning interface, storytelling through interaction, motion blur data visualization, scroll physics diagram",
+      "negative": "parallax only, no velocity awareness, static content, ignores scroll speed, one speed fits all, no narrative pacing, boring scroll",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "glazed",
+          "depth": "bas-relief",
+          "light_response": [
+            "iridescent",
+            "translucent"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.2,
+          "entropy_signature": [
+            "drift"
+          ],
+          "narrative_phase": "peak"
+        },
+        "shader_technique": {
+          "primary_technique": "domain_warping",
+          "fallback_strategy": "css_filter"
+        },
+        "visual_mode": "aurora",
+        "morphism_class": "glassmorphism"
+      },
+      "token_bindings": [
+        "--violet",
+        "--cyan",
+        "--copper-light",
+        "--ease-loom",
+        "domain-warp-displacement"
+      ],
+      "socratic_receipts": [
+        13,
+        17,
+        25,
+        27
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 30,
+        "cfg": 7.5,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "C-06",
+      "title": "The Refutation Card",
+      "positive": "split screen thesis antithesis, hover to synthesize interaction, magenta contradiction highlights, dialectical UI component, philosophical argument interface, paradox preservation design, tension visualization, interactive philosophy card, dark theme debate UI",
+      "negative": "single argument, no contradiction, resolved prematurely, no paradox, flat opinion, one-sided, no interaction, static card",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "matte",
+          "depth": "intaglio",
+          "light_response": [
+            "diffuse"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.4,
+          "entropy_signature": [
+            "fracture"
+          ],
+          "narrative_phase": "corruption"
+        },
+        "shader_technique": {
+          "primary_technique": "reaction_diffusion",
+          "fallback_strategy": "css_gradient"
+        },
+        "visual_mode": "glitch",
+        "morphism_class": "siliconmorphism"
+      },
+      "token_bindings": [
+        "--magenta",
+        "--void",
+        "--copper",
+        "--font-display",
+        "--ease-fracture"
+      ],
+      "socratic_receipts": [
+        2,
+        9,
+        11,
+        28
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 28,
+        "cfg": 7.5,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "C-07",
+      "title": "Material Oracle",
+      "positive": "3D material swatch inspector, rotate to see light response, click to see supply chain, copper material with provenance data, sustainable design tool, material honesty interface, regenerative design visualization, ethical sourcing overlay, premium material configurator",
+      "negative": "flat color picker, no depth, no provenance, ignores supply chain, synthetic only, no material honesty, default dropdown, no 3D",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "polished",
+          "depth": "solid",
+          "light_response": [
+            "specular",
+            "metallic",
+            "anisotropic"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.0,
+          "entropy_signature": [],
+          "narrative_phase": "germination"
+        },
+        "shader_technique": {
+          "primary_technique": "ray_marching",
+          "fallback_strategy": "static_png"
+        },
+        "visual_mode": "editorial",
+        "morphism_class": "jewelmorphism"
+      },
+      "token_bindings": [
+        "--copper",
+        "--copper-light",
+        "--denim",
+        "--sage",
+        "--ease-spring"
+      ],
+      "socratic_receipts": [
+        2,
+        6,
+        10,
+        19
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 32,
+        "cfg": 7.5,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "C-08",
+      "title": "The Long Arc Timeline",
+      "positive": "decade-scale roadmap visualization, collapsible phases, copper milestone markers, void space between phases, long-term planning interface, patience as visual property, 10-year arc timeline, M1-M12 roadmap expanded, strategic planning UI, dark theme timeline",
+      "negative": "quarterly OKR, short-term only, no long arc, cramped timeline, impatient design, quarterly focus, no vision, default gantt chart",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "matte",
+          "depth": "bas-relief",
+          "light_response": [
+            "diffuse"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.0,
+          "entropy_signature": [
+            "growth"
+          ],
+          "narrative_phase": "germination"
+        },
+        "shader_technique": {
+          "primary_technique": "periodic_functions",
+          "fallback_strategy": "static_png"
+        },
+        "visual_mode": "editorial",
+        "morphism_class": "woodmorphism"
+      },
+      "token_bindings": [
+        "--copper",
+        "--denim-deep",
+        "--void",
+        "--font-display",
+        "--ease-settle"
+      ],
+      "socratic_receipts": [
+        9,
+        12,
+        25,
+        30
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 28,
+        "cfg": 7.0,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "C-09",
+      "title": "Community Co-Author Grid",
+      "positive": "editable collaborative grid, version history threads, attribution annotations, community contribution interface, co-author visualization, real-time mutation display, collaborative design tool, audience as architecture, participatory interface, dark theme collaboration UI",
+      "negative": "static portfolio, no editing, no community, read-only, no attribution, no version history, solo creator only, no participation",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "woven",
+          "depth": "inlaid",
+          "light_response": [
+            "diffuse",
+            "subsurface-scatter"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.1,
+          "entropy_signature": [
+            "growth"
+          ],
+          "narrative_phase": "bloom"
+        },
+        "shader_technique": {
+          "primary_technique": "reaction_diffusion",
+          "fallback_strategy": "css_filter"
+        },
+        "visual_mode": "aurora",
+        "morphism_class": "claymorphism"
+      },
+      "token_bindings": [
+        "--sage",
+        "--dust-light",
+        "--copper",
+        "--font-ui",
+        "--ease-spring"
+      ],
+      "socratic_receipts": [
+        4,
+        19,
+        29
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 28,
+        "cfg": 7.0,
+        "sampler": "dpmpp_2m"
+      }
+    },
+    {
+      "id": "C-10",
+      "title": "Independence Launch Sequence",
+      "positive": "progressive disclosure launch interface, system check indicators, auto-documentation generation, independence completeness meter, self-hosting visualization, launch to independence UI, deployment readiness dashboard, maker exit strategy, autonomous system birth, dark theme devops interface",
+      "negative": "deployment dashboard only, no independence, maker-dependent, no auto-doc, no progressive disclosure, static status page, no completeness meter",
+      "image_semantics": {
+        "material_grammar": {
+          "surface": "polished",
+          "depth": "solid",
+          "light_response": [
+            "specular",
+            "metallic"
+          ]
+        },
+        "narrative_state": {
+          "corruption_level": 0.0,
+          "entropy_signature": [],
+          "narrative_phase": "regeneration"
+        },
+        "shader_technique": {
+          "primary_technique": "sdf_blob",
+          "fallback_strategy": "css_gradient"
+        },
+        "visual_mode": "solarpunk_grimoire",
+        "morphism_class": "siliconmorphism"
+      },
+      "token_bindings": [
+        "--copper-light",
+        "--cyan",
+        "--void",
+        "--font-mono",
+        "--ease-out"
+      ],
+      "socratic_receipts": [
+        7,
+        19,
+        29,
+        30
+      ],
+      "wan_params": {
+        "model": "wan2.2",
+        "steps": 30,
+        "cfg": 7.5,
+        "sampler": "dpmpp_2m"
+      }
+    }
+  ]
+}

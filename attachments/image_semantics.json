@@ -1,0 +1,521 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodyfire.studio/schemas/image_semantics.json",
+  "title": "Image Semantics IR",
+  "description": "Bidirectional translation layer between image generation, analysis, and design token systems. Parallel to stitch_plan.json.",
+  "version": "1.0.0",
+  "type": "object",
+  "required": [
+    "image_id",
+    "provenance",
+    "semantic_layers",
+    "token_bindings",
+    "validation_receipts"
+  ],
+  "properties": {
+    "image_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "Canonical identifier for the image artifact"
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "source_pipeline",
+        "generation_method",
+        "timestamp",
+        "author_signature"
+      ],
+      "properties": {
+        "source_pipeline": {
+          "type": "string",
+          "enum": [
+            "wan_artistic",
+            "comfyui",
+            "reverse_prompt_engineer",
+            "manual_capture",
+            "shader_render",
+            "svg_filter"
+          ]
+        },
+        "generation_method": {
+          "type": "string",
+          "enum": [
+            "txt2img",
+            "img2img",
+            "reverse_prompt",
+            "shader_capture",
+            "filter_stack",
+            "photograph"
+          ]
+        },
+        "parent_image_id": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "author_signature": {
+          "type": "string"
+        },
+        "seed": {
+          "type": "integer"
+        },
+        "checkpoint": {
+          "type": "string"
+        },
+        "loras": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "semantic_layers": {
+      "type": "object",
+      "required": [
+        "material_grammar",
+        "narrative_state",
+        "shader_technique",
+        "visual_mode",
+        "morphism_class"
+      ],
+      "properties": {
+        "material_grammar": {
+          "type": "object",
+          "description": "Omni-Loom material taxonomy applied to image surfaces",
+          "properties": {
+            "surface": {
+              "type": "string",
+              "enum": [
+                "matte",
+                "glazed",
+                "oxidized",
+                "embroidered",
+                "polished",
+                "etched",
+                "woven",
+                "knitted",
+                "beaded",
+                "quilted",
+                "carved",
+                "cast",
+                "forged",
+                "blown",
+                "turned"
+              ]
+            },
+            "depth": {
+              "type": "string",
+              "enum": [
+                "bas-relief",
+                "intaglio",
+                "through-cut",
+                "embossed",
+                "debossed",
+                "inlaid",
+                "veneer",
+                "laminate",
+                "solid"
+              ]
+            },
+            "light_response": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "subsurface-scatter",
+                  "iridescent",
+                  "chromatic-aberration",
+                  "specular",
+                  "diffuse",
+                  "translucent",
+                  "opaque",
+                  "metallic",
+                  "dielectric",
+                  "anisotropic",
+                  "isotropic"
+                ]
+              }
+            },
+            "tactile_quality": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "rough",
+                  "smooth",
+                  "grainy",
+                  "silky",
+                  "bumpy",
+                  "ridged",
+                  "porous",
+                  "dense",
+                  "fibrous",
+                  "crystalline"
+                ]
+              }
+            },
+            "fabrication_context": {
+              "type": "object",
+              "properties": {
+                "toolpath": {
+                  "type": "string",
+                  "enum": [
+                    "cnc",
+                    "embroidery",
+                    "laser",
+                    "print",
+                    "weave",
+                    "quilt",
+                    "cast",
+                    "forge"
+                  ]
+                },
+                "kerf": {
+                  "type": "number"
+                },
+                "stitch_density": {
+                  "type": "number"
+                },
+                "registration": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "narrative_state": {
+          "type": "object",
+          "description": "ChromaFlora Prime 6-state corruption narrative engine",
+          "properties": {
+            "corruption_level": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "description": "0.0 = pristine, 1.0 = fully corrupted"
+            },
+            "authentication_state": {
+              "type": "string",
+              "enum": [
+                "verified",
+                "compromised",
+                "unknown",
+                "pending",
+                "revoked"
+              ]
+            },
+            "entropy_signature": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "bloom",
+                  "fracture",
+                  "drift",
+                  "oxidation",
+                  "decay",
+                  "growth",
+                  "silence",
+                  "noise",
+                  "compression",
+                  "expansion"
+                ]
+              }
+            },
+            "spectral_ink_proximity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Distance in px from spectral ink trigger zone"
+            },
+            "narrative_phase": {
+              "type": "string",
+              "enum": [
+                "germination",
+                "bloom",
+                "peak",
+                "senescence",
+                "corruption",
+                "regeneration"
+              ]
+            }
+          }
+        },
+        "shader_technique": {
+          "type": "object",
+          "description": "Shader-gallery technique tags for GPU-rendered or shader-derived images",
+          "properties": {
+            "primary_technique": {
+              "type": "string",
+              "enum": [
+                "domain_warping",
+                "fbm_noise",
+                "voronoi",
+                "sdf_blob",
+                "reaction_diffusion",
+                "polar_coordinates",
+                "periodic_functions",
+                "anisotropy",
+                "ray_marching",
+                "palette_cycling"
+              ]
+            },
+            "secondary_techniques": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "uniforms": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "number"
+              }
+            },
+            "fallback_strategy": {
+              "type": "string",
+              "enum": [
+                "css_gradient",
+                "css_filter",
+                "static_png",
+                "svg_filter",
+                "lottie"
+              ]
+            }
+          }
+        },
+        "visual_mode": {
+          "type": "string",
+          "enum": [
+            "aurora",
+            "solarpunk_grimoire",
+            "holographic",
+            "editorial",
+            "brutalist",
+            "wabi_sabi",
+            "neon",
+            "glitch",
+            "risograph"
+          ],
+          "description": "Melodyfire v3 visual mode classification"
+        },
+        "morphism_class": {
+          "type": "string",
+          "enum": [
+            "glassmorphism",
+            "woodmorphism",
+            "papermorphism",
+            "siliconmorphism",
+            "claymorphism",
+            "jewelmorphism",
+            "neumorphism",
+            "aeroglass",
+            "fluid_glass"
+          ],
+          "description": "Morphica Family classification"
+        }
+      }
+    },
+    "token_bindings": {
+      "type": "object",
+      "description": "Bidirectional links to design system tokens",
+      "properties": {
+        "color_primitives": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "References to --copper, --denim, etc."
+        },
+        "motion_curves": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "References to ease-weave, ease-loom, etc."
+        },
+        "shadow_tokens": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "typographic_tokens": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "svg_filters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "References to svg-filter-lab filter IDs"
+        },
+        "component_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Storybook component paths"
+        }
+      }
+    },
+    "prompt_grammar": {
+      "type": "object",
+      "description": "Reconstructible prompt for regeneration or variation",
+      "properties": {
+        "positive_prompt": {
+          "type": "string"
+        },
+        "negative_prompt": {
+          "type": "string"
+        },
+        "style_modifiers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "composition_rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lighting_modifiers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "camera_params": {
+          "type": "object",
+          "properties": {
+            "lens": {
+              "type": "string"
+            },
+            "aperture": {
+              "type": "string"
+            },
+            "focal_length": {
+              "type": "string"
+            },
+            "depth_of_field": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "validation_receipts": {
+      "type": "array",
+      "description": "Inspectible evidence from the 30-question Socratic framework",
+      "items": {
+        "type": "object",
+        "required": [
+          "question_id",
+          "socratic_layer",
+          "answer_digest",
+          "visual_proof",
+          "token_impact"
+        ],
+        "properties": {
+          "question_id": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 30
+          },
+          "socratic_layer": {
+            "type": "string",
+            "enum": [
+              "epistemic",
+              "ontological",
+              "axiological",
+              "phenomenological",
+              "praxeological",
+              "semiotic",
+              "compositional",
+              "narrative"
+            ]
+          },
+          "answer_digest": {
+            "type": "string",
+            "maxLength": 280
+          },
+          "visual_proof": {
+            "type": "string",
+            "description": "Path to evidence image or hash"
+          },
+          "token_impact": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Which tokens were modified or validated by this question"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    },
+    "artifact_manifest": {
+      "type": "object",
+      "description": "Seed-Loom Art-to-Product engine outputs",
+      "properties": {
+        "collection_thesis": {
+          "type": "string"
+        },
+        "sku": {
+          "type": "string"
+        },
+        "license_tier": {
+          "type": "string",
+          "enum": [
+            "personal",
+            "commercial",
+            "extended",
+            "exclusive"
+          ]
+        },
+        "gumroad_copy": {
+          "type": "string"
+        },
+        "alt_text": {
+          "type": "string"
+        },
+        "caption": {
+          "type": "string"
+        },
+        "social_excerpt": {
+          "type": "string",
+          "maxLength": 280
+        },
+        "print_specs": {
+          "type": "object",
+          "properties": {
+            "dpi": {
+              "type": "integer"
+            },
+            "color_space": {
+              "type": "string"
+            },
+            "dimensions": {
+              "type": "string"
+            },
+            "substrate": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

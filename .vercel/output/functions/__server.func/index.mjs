@@ -12,9 +12,10 @@ var install_page_default = "<!DOCTYPE html>\n<html lang=\"en\" class=\"device-de
 //#endregion
 //#region \0virtual:grok-og-identity
 var grokOgIdentity = { "site": {
-	"title": "Prism Loom",
-	"card": "custom",
+	"title": "Locus",
 	"type": "x:game",
+	"card": "custom",
+	"color": "0C0D0F",
 	"image": "/og.jpg",
 	"banner": "/x-banner.jpg"
 } };

@@ -1,15 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="8" fill="#08070c"/>
-  <g transform="translate(16 16)" fill="none">
-    <circle r="3.2" fill="#4fd6c8"/>
-    <circle r="7.4" stroke="#d4af5a" stroke-width="1.4"/>
-    <path d="M0-11 L2.2-4.2 L0-2.2 L-2.2-4.2 Z" fill="#d4af5a"/>
-    <path d="M0-11 L2.2-4.2 L0-2.2 L-2.2-4.2 Z" fill="#d4af5a" transform="rotate(45)"/>
-    <path d="M0-11 L2.2-4.2 L0-2.2 L-2.2-4.2 Z" fill="#d4af5a" transform="rotate(90)"/>
-    <path d="M0-11 L2.2-4.2 L0-2.2 L-2.2-4.2 Z" fill="#d4af5a" transform="rotate(135)"/>
-    <path d="M0-11 L2.2-4.2 L0-2.2 L-2.2-4.2 Z" fill="#d4af5a" transform="rotate(180)"/>
-    <path d="M0-11 L2.2-4.2 L0-2.2 L-2.2-4.2 Z" fill="#d4af5a" transform="rotate(225)"/>
-    <path d="M0-11 L2.2-4.2 L0-2.2 L-2.2-4.2 Z" fill="#d4af5a" transform="rotate(270)"/>
-    <path d="M0-11 L2.2-4.2 L0-2.2 L-2.2-4.2 Z" fill="#d4af5a" transform="rotate(315)"/>
-  </g>
+  <rect width="32" height="32" rx="8" fill="#0c0d0f"/>
+  <path d="M5 16h22M16 5v22" stroke="#ecece8" stroke-width="1" opacity="0.28"/>
+  <path d="M4 18 C8 6, 12 6, 16 16 S24 26, 28 14" stroke="#8eb4d3" stroke-width="1.7" fill="none" stroke-linecap="round"/>
 </svg>

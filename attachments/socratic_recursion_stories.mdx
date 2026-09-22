@@ -1,0 +1,813 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { SocraticReceipt } from './SocraticReceipt';
+import { CorruptionState } from './CorruptionState';
+import { CircadianColor } from './CircadianColor';
+import { GestureReceipt } from './GestureReceipt';
+import { TensionGrid } from './TensionGrid';
+import { NarrativeScroll } from './NarrativeScroll';
+import { RefutationCard } from './RefutationCard';
+import { MaterialOracle } from './MaterialOracle';
+import { LongArcTimeline } from './LongArcTimeline';
+import { CommunityCoAuthor } from './CommunityCoAuthor';
+import { IndependenceLaunch } from './IndependenceLaunch';
+
+<Meta title="Socratic Recursion/Overview" />
+
+# Socratic Recursion — Storybook Namespace
+
+> Every design decision is accompanied by its Socratic receipt.
+
+This namespace contains 30 visual test cases — one per question from the epistemic inquiry framework — implemented as inspectable, interactive Storybook stories. Each story renders the **receipt** (question, answer, visual proof, token impact) alongside the component it validates.
+
+---
+
+## Epistemic Layer (Questions 1–4)
+
+### Q1: What is the primary medium of truth?
+
+<Canvas>
+  <Story name="Q1 — Medium of Truth">
+    <SocraticReceipt
+      questionId={1}
+      layer="epistemic"
+      question="What is the primary medium of truth for this system — image, code, prose, or measurement?"
+      answerDigest="Image claims photo-realism but uses fbm noise — medium is synthetic."
+      visualProof="A-05-aurora-domain-warp"
+      tokenImpact={["provenance.generation_method", "semantic_layers.shader_technique"]}
+      confidence={0.92}
+    >
+      <div style={{ width: 320, height: 200, background: 'linear-gradient(135deg, #6b4ee6, #00d4aa, #ff6b9d, #d4a843)', borderRadius: 12 }} />
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+**Validation criteria**: Can a future collaborator reconstruct the medium from the artifact alone?
+
+---
+
+### Q2: What evidence would falsify the aesthetic hypothesis?
+
+<Canvas>
+  <Story name="Q2 — Falsification Evidence">
+    <SocraticReceipt
+      questionId={2}
+      layer="epistemic"
+      question="What evidence would falsify the aesthetic hypothesis?"
+      answerDigest="If copper token renders as orange on P3 displays, the OKLCH mapping is wrong."
+      visualProof="B-04-semantic-color-space"
+      tokenImpact={["token_bindings.color_primitives", "semantic_analysis.accessibility_contract"]}
+      confidence={0.88}
+    >
+      <div style={{ display: 'flex', gap: 8 }}>
+        <div style={{ width: 60, height: 60, background: '#b87333', borderRadius: 8 }} />
+        <div style={{ width: 60, height: 60, background: '#d4a843', borderRadius: 8 }} />
+        <div style={{ width: 60, height: 60, background: '#8b5a2b', borderRadius: 8 }} />
+      </div>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q3: What is the smallest unit of visual information that remains recognizable?
+
+<Canvas>
+  <Story name="Q3 — Minimum Recognizable Unit">
+    <SocraticReceipt
+      questionId={3}
+      layer="epistemic"
+      question="What is the smallest unit of visual information that remains recognizable?"
+      answerDigest="The copper accent line at 1px — below this, the system loses its identity."
+      visualProof="A-01-copper-oxidation"
+      tokenImpact={["semantic_layers.material_grammar.surface"]}
+      confidence={0.85}
+    >
+      <div style={{ width: 200, height: 2, background: 'linear-gradient(90deg, #b87333, #d4a843)' }} />
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q4: Which tokens are derived vs. axiomatic?
+
+<Canvas>
+  <Story name="Q4 — Derived vs. Axiomatic">
+    <SocraticReceipt
+      questionId={4}
+      layer="epistemic"
+      question="Which tokens are derived vs. axiomatic?"
+      answerDigest="--void and --copper are axiomatic; --copper-light and --copper-dark are derived via OKLCH lightness shift."
+      visualProof="B-02-token-diff-heatmap"
+      tokenImpact={["intent_ast.parsed_tokens.color_tokens"]}
+      confidence={0.95}
+    >
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, width: 280 }}>
+        <div style={{ padding: 16, background: '#0d0a12', color: '#e8e0d4', borderRadius: 8, fontFamily: 'monospace', fontSize: 12 }}>
+          AXIOMATIC<br/>--void: #0d0a12
+        </div>
+        <div style={{ padding: 16, background: '#d4a843', color: '#0d0a12', borderRadius: 8, fontFamily: 'monospace', fontSize: 12 }}>
+          DERIVED<br/>--copper-light
+        </div>
+      </div>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+## Ontological Layer (Questions 5–8)
+
+### Q5: Does the surface exist before the light hits it?
+
+<Canvas>
+  <Story name="Q5 — Surface Ontology">
+    <SocraticReceipt
+      questionId={5}
+      layer="ontological"
+      question="Does the surface exist before the light hits it, or is it co-created by the observer?"
+      answerDigest="In the shader-gallery, the aurora is observer-dependent — no camera, no ribbon."
+      visualProof="A-05-aurora-domain-warp"
+      tokenImpact={["semantic_layers.shader_technique.primary_technique", "semantic_layers.material_grammar.light_response"]}
+      confidence={0.78}
+    >
+      <CircadianColor phase="dusk" />
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q6: What is the relationship between void and negative space?
+
+<Canvas>
+  <Story name="Q6 — Void & Negative Space">
+    <SocraticReceipt
+      questionId={6}
+      layer="ontological"
+      question="What is the relationship between void (CSS token) and negative space in composition?"
+      answerDigest="--void is not absence; it is the substrate that makes copper legible. It is active silence."
+      visualProof="C-10-void-typography"
+      tokenImpact={["token_bindings.color_primitives", "intent_ast.parsed_tokens.space_tokens"]}
+      confidence={0.90}
+    >
+      <div style={{ background: '#0d0a12', padding: 40, color: '#e8e0d4', fontFamily: 'Georgia, serif', fontSize: 24, lineHeight: 1.6, maxWidth: 400 }}>
+        The void is not empty.<br/>
+        <span style={{ color: '#b87333' }}>It is the condition of visibility.</span>
+      </div>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q7: Are the 4 morphism states categories or gradients?
+
+<Canvas>
+  <Story name="Q7 — Morphism Ontology">
+    <SocraticReceipt
+      questionId={7}
+      layer="ontological"
+      question="Are the 4 morphism states (glass/wood/paper/silicon) categories or gradients?"
+      answerDigest="They are gradients with categorical thresholds — the Morphism Playground proves this."
+      visualProof="B-03-morphism-switcher"
+      tokenImpact={["semantic_layers.morphism_class", "output_manifest.components"]}
+      confidence={0.87}
+    >
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8, width: 320 }}>
+        <div style={{ height: 80, background: 'rgba(255,255,255,0.055)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.13)', borderRadius: 8 }} />
+        <div style={{ height: 80, background: 'linear-gradient(180deg, rgba(139,111,78,0.64), rgba(74,56,40,0.9))', border: '1px solid #ad9073', borderRadius: 8 }} />
+        <div style={{ height: 80, background: '#f5f0e8', border: '1px solid #c4b9a8', borderRadius: 8 }} />
+        <div style={{ height: 80, background: 'linear-gradient(145deg, #5b6e6f, #263649)', border: '1px solid #7a9e8c', borderRadius: 8 }} />
+      </div>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q8: What entities persist across the 8-stage Omni-Loom pipeline?
+
+<Canvas>
+  <Story name="Q8 — Persistent Entities">
+    <SocraticReceipt
+      questionId={8}
+      layer="ontological"
+      question="What entities persist across the 8-stage Omni-Loom pipeline?"
+      answerDigest="Only stitch_plan.json and the provenance hash survive all transformations."
+      visualProof="B-01-stitch-plan-viz"
+      tokenImpact={["provenance", "compilation_stages"]}
+      confidence={0.96}
+    >
+      <code style={{ background: '#0d0a12', color: '#00d4aa', padding: 16, borderRadius: 8, fontFamily: 'monospace', fontSize: 12, display: 'block' }}>
+        {`{
+  "plan_id": "dp-omni-loom-v1",
+  "persistent": true,
+  "hash": "sha256:a3f2..."
+}`}
+      </code>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+## Axiological Layer (Questions 9–12)
+
+### Q9: Which constraint, if removed, causes identity loss?
+
+<Canvas>
+  <Story name="Q9 — Identity Constraint">
+    <SocraticReceipt
+      questionId={9}
+      layer="axiological"
+      question="Which constraint, if removed, would cause the system to lose its identity?"
+      answerDigest="Removal of 'oxidized' from the copper token collapses the entire Omni-Loom material grammar."
+      visualProof="A-01-copper-oxidation"
+      tokenImpact={["semantic_layers.material_grammar.surface", "intent_ast.semantic_analysis.collision_report"]}
+      confidence={0.91}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+        <div style={{ width: 80, height: 80, background: 'linear-gradient(135deg, #b87333, #8b5a2b)', borderRadius: 8 }} />
+        <span style={{ fontSize: 24 }}>→</span>
+        <div style={{ width: 80, height: 80, background: '#ff6b6b', borderRadius: 8, display: 'grid', placeItems: 'center', color: 'white', fontWeight: 'bold' }}>✕</div>
+      </div>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q10: Is regenerative design measurable or only legible?
+
+<Canvas>
+  <Story name="Q10 — Regenerative Measurability">
+    <SocraticReceipt
+      questionId={10}
+      layer="axiological"
+      question="Is regenerative design measurable or only legible?"
+      answerDigest="It is measurable through the independence completeness meter — 97% = launched."
+      visualProof="C-10-independence-launch"
+      tokenImpact={["artifact_manifest", "validation_receipts"]}
+      confidence={0.82}
+    >
+      <IndependenceLaunch completeness={0.97} />
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q11: What does Launch to Independence look like as a visual property?
+
+<Canvas>
+  <Story name="Q11 — Independence as Visual">
+    <SocraticReceipt
+      questionId={11}
+      layer="axiological"
+      question="What does 'Launch to Independence' look like as a visual property?"
+      answerDigest="The maker's hand fades from the interface. Cursor becomes system-native."
+      visualProof="C-10-independence-launch"
+      tokenImpact={["token_bindings.motion_curves", "output_manifest.components"]}
+      confidence={0.75}
+    >
+      <div style={{ width: 200, height: 4, background: 'linear-gradient(90deg, #d4a843 70%, transparent 100%)', borderRadius: 2 }} />
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q12: When does precision become violence?
+
+<Canvas>
+  <Story name="Q12 — Precision & Violence">
+    <SocraticReceipt
+      questionId={12}
+      layer="axiological"
+      question="When does precision become violence?"
+      answerDigest="When the 1px copper line enforces itself over accessibility needs — precision without care."
+      visualProof="C-01-question-index"
+      tokenImpact={["semantic_analysis.accessibility_contract", "intent_ast.parsed_tokens.color_tokens"]}
+      confidence={0.70}
+    >
+      <div style={{ display: 'flex', gap: 4 }}>
+        <div style={{ width: 1, height: 40, background: '#b87333' }} />
+        <div style={{ width: 2, height: 40, background: '#b87333' }} />
+        <div style={{ width: 4, height: 40, background: '#b87333' }} />
+        <div style={{ width: 8, height: 40, background: '#b87333' }} />
+      </div>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+## Phenomenological Layer (Questions 13–16)
+
+### Q13: What does ease-weave feel like in the body?
+
+<Canvas>
+  <Story name="Q13 — ease-weave Somatic">
+    <SocraticReceipt
+      questionId={13}
+      layer="phenomenological"
+      question="What does the ease-weave curve feel like in the body?"
+      answerDigest="Tension in warp threads maps to spring-damping 0.72 — a held breath, then release."
+      visualProof="A-02-denim-weave"
+      tokenImpact={["token_bindings.motion_curves", "semantic_layers.material_grammar.fabrication_context"]}
+      confidence={0.68}
+    >
+      <GestureReceipt tension={0.72} damping={0.4} />
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q14: How does the copper palette register at different times of day?
+
+<Canvas>
+  <Story name="Q14 — Circadian Copper">
+    <SocraticReceipt
+      questionId={14}
+      layer="phenomenological"
+      question="How does the copper palette register at different times of day?"
+      answerDigest="At dawn, copper reads as warmth. At midnight, it reads as emergency."
+      visualProof="C-02-circadian-color"
+      tokenImpact={["intent_ast.parsed_tokens.color_tokens", "semantic_layers.visual_mode"]}
+      confidence={0.80}
+    >
+      <CircadianColor phase="dawn" />
+      <CircadianColor phase="midnight" />
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q15: What is the emotional valence of feTurbulence leather grain vs. smooth glass?
+
+<Canvas>
+  <Story name="Q15 — Texture Valence">
+    <SocraticReceipt
+      questionId={15}
+      layer="phenomenological"
+      question="What is the emotional valence of feTurbulence leather grain vs. smooth glass?"
+      answerDigest="Leather grain = trust through imperfection. Glass = trust through transparency. Both are contracts."
+      visualProof="A-07-wood-grain-glass"
+      tokenImpact={["semantic_layers.material_grammar.surface", "token_bindings.svg_filters"]}
+      confidence={0.73}
+    >
+      <div style={{ display: 'flex', gap: 16 }}>
+        <div style={{ width: 100, height: 100, background: '#8b5a2b', borderRadius: 8, filter: 'url(#leather-grain)' }} />
+        <div style={{ width: 100, height: 100, background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: 8 }} />
+      </div>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q16: Where does the user feel the corruption state before they see it?
+
+<Canvas>
+  <Story name="Q16 — Pre-Visual Corruption">
+    <SocraticReceipt
+      questionId={16}
+      layer="phenomenological"
+      question="Where does the user feel the corruption state before they see it?"
+      answerDigest="In the Web Audio drone — dissonance enters 200ms before the RGB aberration renders."
+      visualProof="A-03-holographic-auth-failure"
+      tokenImpact={["semantic_layers.narrative_state.corruption_level", "token_bindings.motion_curves"]}
+      confidence={0.85}
+    >
+      <CorruptionState level={0.6} audioPreview={true} />
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+## Praxeological Layer (Questions 17–20)
+
+### Q17: What is the gesture that generates the artifact?
+
+<Canvas>
+  <Story name="Q17 — Generative Gesture">
+    <SocraticReceipt
+      questionId={17}
+      layer="praxeological"
+      question="What is the gesture that generates the artifact?"
+      answerDigest="The cursor as needle — mouse repulsion = thread tension in the particle canvas."
+      visualProof="A-02-denim-weave"
+      tokenImpact={["token_bindings.motion_curves", "semantic_layers.material_grammar.fabrication_context"]}
+      confidence={0.79}
+    >
+      <GestureReceipt mode="needle" />
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q18: Which comes first: the prompt or the pixel?
+
+<Canvas>
+  <Story name="Q18 — Prompt vs. Pixel">
+    <SocraticReceipt
+      questionId={18}
+      layer="praxeological"
+      question="Which comes first: the prompt or the pixel?"
+      answerDigest="In the Reverse Prompt Engineer, the pixel generates the prompt. In the Prompt Lab, the prompt generates the pixel. The loop is the answer."
+      visualProof="A-01-copper-oxidation"
+      tokenImpact={["provenance.generation_method", "prompt_grammar"]}
+      confidence={0.88}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontFamily: 'monospace' }}>
+        <span style={{ color: '#00d4aa' }}>prompt</span>
+        <span>⇄</span>
+        <span style={{ color: '#ff6b9d' }}>pixel</span>
+      </div>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q19: How does the handoff from Seed-Loom to Omni-Loom preserve intent?
+
+<Canvas>
+  <Story name="Q19 — Intent Preservation">
+    <SocraticReceipt
+      questionId={19}
+      layer="praxeological"
+      question="How does the handoff from Seed-Loom to Omni-Loom preserve intent?"
+      answerDigest="Through the shared image_semantics.json IR — both pipelines read and write the same schema."
+      visualProof="B-05-agent-handoff"
+      tokenImpact={["provenance", "validation_receipts", "artifact_manifest"]}
+      confidence={0.94}
+    >
+      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+        <div style={{ padding: 12, background: '#1a0f2e', color: '#d4a843', borderRadius: 8, fontFamily: 'monospace', fontSize: 11 }}>seed-loom</div>
+        <span>→</span>
+        <div style={{ padding: 12, background: '#1a0f2e', color: '#00d4aa', borderRadius: 8, fontFamily: 'monospace', fontSize: 11 }}>image_semantics.json</div>
+        <span>→</span>
+        <div style={{ padding: 12, background: '#1a0f2e', color: '#ff6b9d', borderRadius: 8, fontFamily: 'monospace', fontSize: 11 }}>omni-loom</div>
+      </div>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q20: What is the QA gate that proves the design system is living?
+
+<Canvas>
+  <Story name="Q20 — Living System QA">
+    <SocraticReceipt
+      questionId={20}
+      layer="praxeological"
+      question="What is the QA gate that proves the design system is living?"
+      answerDigest="The VRT receipt shows pixel drift < 0.5% AND token drift = 0. If tokens drift, the system is dying."
+      visualProof="B-02-token-diff-heatmap"
+      tokenImpact={["vrt_receipt", "semantic_analysis.collision_report"]}
+      confidence={0.90}
+    >
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, width: 260 }}>
+        <div style={{ padding: 16, background: '#00d4aa22', border: '1px solid #00d4aa', borderRadius: 8, textAlign: 'center', color: '#00d4aa' }}>
+          <div style={{ fontSize: 24, fontWeight: 'bold' }}>0.3%</div>
+          <div style={{ fontSize: 10 }}>PIXEL DRIFT</div>
+        </div>
+        <div style={{ padding: 16, background: '#00d4aa22', border: '1px solid #00d4aa', borderRadius: 8, textAlign: 'center', color: '#00d4aa' }}>
+          <div style={{ fontSize: 24, fontWeight: 'bold' }}>0</div>
+          <div style={{ fontSize: 10 }}>TOKEN DRIFT</div>
+        </div>
+      </div>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+## Semiotic Layer (Questions 21–24)
+
+### Q21: What does denim signify in a post-industrial context?
+
+<Canvas>
+  <Story name="Q21 — Denim Semiotics">
+    <SocraticReceipt
+      questionId={21}
+      layer="semiotic"
+      question="What does denim signify in a post-industrial context?"
+      answerDigest="Labor made invisible by mass production. The Omni-Loom makes it visible again through fabrication context."
+      visualProof="A-02-denim-weave"
+      tokenImpact={["semantic_layers.material_grammar.fabrication_context", "artifact_manifest.collection_thesis"]}
+      confidence={0.76}
+    >
+      <div style={{ width: 120, height: 120, background: 'linear-gradient(135deg, #2b3f5c, #1a0f2e)', borderRadius: 8, display: 'grid', placeItems: 'center', color: '#c4b9a8', fontFamily: 'monospace', fontSize: 10 }}>
+        WARP 24<br/>WEFT 18
+      </div>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q22: How does the mandala engine differ from a loading spinner semiotically?
+
+<Canvas>
+  <Story name="Q22 — Mandala vs. Spinner">
+    <SocraticReceipt
+      questionId={22}
+      layer="semiotic"
+      question="How does the mandala engine differ from a loading spinner semiotically?"
+      answerDigest="The spinner promises completion. The mandala promises recurrence. One is teleological; the other is eternal."
+      visualProof="A-06-risograph-mandala"
+      tokenImpact={["semantic_layers.shader_technique", "artifact_manifest.collection_thesis"]}
+      confidence={0.83}
+    >
+      <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
+        <div style={{ width: 40, height: 40, border: '3px solid #b87333', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+        <span style={{ color: '#666' }}>vs.</span>
+        <svg width="40" height="40" viewBox="0 0 40 40">
+          <circle cx="20" cy="20" r="18" fill="none" stroke="#b87333" strokeWidth="1" />
+          <circle cx="20" cy="20" r="12" fill="none" stroke="#d4a843" strokeWidth="1" />
+          <circle cx="20" cy="20" r="6" fill="none" stroke="#00d4aa" strokeWidth="1" />
+        </svg>
+      </div>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q23: What is the difference between embroidery as font and as material?
+
+<Canvas>
+  <Story name="Q23 — Embroidery Duality">
+    <SocraticReceipt
+      questionId={23}
+      layer="semiotic"
+      question="What is the difference between embroidery as font and as material?"
+      answerDigest="As font, it is legibility. As material, it is labor. The same glyph carries both meanings simultaneously."
+      visualProof="A-04-embroidered-circuit"
+      tokenImpact={["token_bindings.typographic_tokens", "semantic_layers.material_grammar.surface"]}
+      confidence={0.81}
+    >
+      <div style={{ fontFamily: 'Georgia, serif', fontSize: 32, color: '#b87333', letterSpacing: '0.09em' }}>
+        STITCH
+      </div>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q24: What does it mean for a shader to be premium?
+
+<Canvas>
+  <Story name="Q24 — Premium Shader">
+    <SocraticReceipt
+      questionId={24}
+      layer="semiotic"
+      question="What does it mean for a shader to be premium?"
+      answerDigest="It means the fallback strategy is invisible. The user never knows they missed the GLSL."
+      visualProof="B-07-shader-fallback"
+      tokenImpact={["semantic_layers.shader_technique.fallback_strategy", "vrt_receipt"]}
+      confidence={0.89}
+    >
+      <div style={{ display: 'flex', gap: 8 }}>
+        <div style={{ padding: 8, background: '#6b4ee6', color: 'white', borderRadius: 4, fontSize: 10 }}>GLSL</div>
+        <div style={{ padding: 8, background: '#2b3f5c', color: 'white', borderRadius: 4, fontSize: 10 }}>CSS</div>
+        <div style={{ padding: 8, background: '#7a9e8c', color: 'white', borderRadius: 4, fontSize: 10 }}>PNG</div>
+      </div>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+## Compositional Layer (Questions 25–27)
+
+### Q25: What is the rule of thirds for a 4-panel morphism showcase?
+
+<Canvas>
+  <Story name="Q25 — Morphism Composition">
+    <SocraticReceipt
+      questionId={25}
+      layer="compositional"
+      question="What is the rule of thirds for a 4-panel morphism showcase?"
+      answerDigest="The eye enters at glass (top-left), rests at wood (bottom-right), and the diagonal tension between them creates narrative."
+      visualProof="B-03-morphism-switcher"
+      tokenImpact={["output_manifest.components", "intent_ast.parsed_tokens.space_tokens"]}
+      confidence={0.77}
+    >
+      <TensionGrid pattern="Z" />
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q26: How does the particle canvas respect ergonomic gaze paths?
+
+<Canvas>
+  <Story name="Q26 — Gaze Ergonomics">
+    <SocraticReceipt
+      questionId={26}
+      layer="compositional"
+      question="How does the particle canvas respect ergonomic gaze paths?"
+      answerDigest="Particles cluster in the F-pattern hotspots, avoiding the Z-pattern saccade lanes."
+      visualProof="C-04-tension-grid"
+      tokenImpact={["intent_ast.parsed_tokens.space_tokens", "semantic_layers.visual_mode"]}
+      confidence={0.72}
+    >
+      <TensionGrid pattern="F" showParticles={true} />
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q27: What is the auditory equivalent of the copper/cyan/magenta gradient?
+
+<Canvas>
+  <Story name="Q27 — Auditory Gradient">
+    <SocraticReceipt
+      questionId={27}
+      layer="compositional"
+      question="What is the auditory equivalent of the copper/cyan/magenta gradient?"
+      answerDigest="Copper = 440Hz (A4, warmth). Cyan = 880Hz (A5, clarity). Magenta = 1320Hz (E6, tension). The Web Audio drone plays this chord."
+      visualProof="A-05-aurora-domain-warp"
+      tokenImpact={["token_bindings.motion_curves", "semantic_layers.narrative_state"]}
+      confidence={0.65}
+    >
+      <div style={{ display: 'flex', gap: 4, alignItems: 'flex-end', height: 60 }}>
+        <div style={{ width: 20, height: 40, background: '#b87333', borderRadius: 2 }} />
+        <div style={{ width: 20, height: 60, background: '#00d4aa', borderRadius: 2 }} />
+        <div style={{ width: 20, height: 30, background: '#ff6b9d', borderRadius: 2 }} />
+      </div>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+## Narrative Layer (Questions 28–30)
+
+### Q28: Whose voice speaks in the stitch_plan.json?
+
+<Canvas>
+  <Story name="Q28 — Voice of the IR">
+    <SocraticReceipt
+      questionId={28}
+      layer="narrative"
+      question="Whose voice speaks in the stitch_plan.json?"
+      answerDigest="No one. It is the system's own voice — the compiler speaking about itself."
+      visualProof="B-01-stitch-plan-viz"
+      tokenImpact={["provenance.author_signature", "artifact_manifest.collection_thesis"]}
+      confidence={0.86}
+    >
+      <code style={{ background: '#0d0a12', color: '#c4b9a8', padding: 16, borderRadius: 8, fontFamily: 'monospace', fontSize: 11 }}>
+        {`// I am the plan.
+// I contain all intent.
+// I outlast my maker.`}
+      </code>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q29: What is the reversal or complication in the 8-stage pipeline narrative?
+
+<Canvas>
+  <Story name="Q29 — Pipeline Reversal">
+    <SocraticReceipt
+      questionId={29}
+      layer="narrative"
+      question="What is the reversal or complication in the 8-stage pipeline narrative?"
+      answerDigest="Stage 8 (Verify) can invalidate Stage 1 (Intent). The loop is not linear; it is recursive."
+      visualProof="B-08-corruption-state-machine"
+      tokenImpact={["compilation_stages", "validation_receipts"]}
+      confidence={0.93}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'monospace', fontSize: 12 }}>
+        <span style={{ color: '#00d4aa' }}>08.Verify</span>
+        <span>↺</span>
+        <span style={{ color: '#ff6b9d' }}>01.Intent</span>
+      </div>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+### Q30: If this website were a receipt, what would it prove?
+
+<Canvas>
+  <Story name="Q30 — The Final Receipt">
+    <SocraticReceipt
+      questionId={30}
+      layer="narrative"
+      question="If this website were a receipt, what would it prove?"
+      answerDigest="That 30 questions were asked, 30 answers were given, and every token has a lineage."
+      visualProof="C-01-question-index"
+      tokenImpact={["validation_receipts", "artifact_manifest", "provenance"]}
+      confidence={1.0}
+    >
+      <div style={{ background: '#0d0a12', border: '1px solid #d4a843', borderRadius: 8, padding: 20, maxWidth: 300 }}>
+        <div style={{ color: '#d4a843', fontFamily: 'monospace', fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 12 }}>
+          Receipt #SR-2026-001
+        </div>
+        <div style={{ color: '#e8e0d4', fontFamily: 'Georgia, serif', fontSize: 14, lineHeight: 1.6 }}>
+          30 questions inspected.<br/>
+          30 answers recorded.<br/>
+          <span style={{ color: '#00d4aa' }}>All tokens have lineage.</span>
+        </div>
+        <div style={{ marginTop: 16, paddingTop: 12, borderTop: '1px dashed #d4a843', color: '#c4b9a8', fontFamily: 'monospace', fontSize: 9 }}>
+          HASH: sha256:9f3a...e2c1<br/>
+          TIMESTAMP: 2026-08-21T05:57:00Z
+        </div>
+      </div>
+    </SocraticReceipt>
+  </Story>
+</Canvas>
+
+---
+
+## Component API
+
+### SocraticReceipt
+
+```tsx
+interface SocraticReceiptProps {
+  questionId: number;           // 1–30
+  layer: SocraticLayer;       // epistemic | ontological | axiological | phenomenological | praxeological | semiotic | compositional | narrative
+  question: string;           // The Socratic question
+  answerDigest: string;       // ≤280 character answer
+  visualProof: string;        // Reference to image_semantics.json image_id
+  tokenImpact: string[];      // Affected token paths
+  confidence: number;         // 0.0–1.0
+  children: ReactNode;        // The visual component being validated
+}
+```
+
+### Usage Pattern
+
+```tsx
+// In your component story:
+<SocraticReceipt
+  questionId={13}
+  layer="phenomenological"
+  question="What does ease-weave feel like in the body?"
+  answerDigest="Tension in warp threads maps to spring-damping 0.72."
+  visualProof="A-02-denim-weave"
+  tokenImpact={["token_bindings.motion_curves"]}
+  confidence={0.68}
+>
+  <YourComponent {...props} />
+</SocraticReceipt>
+```
+
+---
+
+## Validation Matrix
+
+| Question | Layer | Component | Token Impact | Confidence |
+|---|---|---|---|---|
+| Q1 | Epistemic | AuroraGradient | provenance, shader_technique | 0.92 |
+| Q2 | Epistemic | ColorSwatch | color_tokens, accessibility | 0.88 |
+| Q3 | Epistemic | MinimumUnit | material_grammar | 0.85 |
+| Q4 | Epistemic | TokenHierarchy | color_tokens | 0.95 |
+| Q5 | Ontological | CircadianColor | shader_technique, light_response | 0.78 |
+| Q6 | Ontological | VoidSpace | color_primitives, space_tokens | 0.90 |
+| Q7 | Ontological | MorphismGrid | morphism_class, components | 0.87 |
+| Q8 | Ontological | PipelineViz | provenance, compilation_stages | 0.96 |
+| Q9 | Axiological | ConstraintTest | material_grammar, collision_report | 0.91 |
+| Q10 | Axiological | IndependenceMeter | artifact_manifest | 0.82 |
+| Q11 | Axiological | FadeTransition | motion_curves, components | 0.75 |
+| Q12 | Axiological | PrecisionScale | accessibility, color_tokens | 0.70 |
+| Q13 | Phenomenological | GestureReceipt | motion_curves, fabrication_context | 0.68 |
+| Q14 | Phenomenological | CircadianCopper | color_tokens, visual_mode | 0.80 |
+| Q15 | Phenomenological | TextureCompare | material_grammar, svg_filters | 0.73 |
+| Q16 | Phenomenological | CorruptionState | narrative_state, motion_curves | 0.85 |
+| Q17 | Praxeological | NeedleCursor | motion_curves, fabrication_context | 0.79 |
+| Q18 | Praxeological | BidirectionalFlow | provenance, prompt_grammar | 0.88 |
+| Q19 | Praxeological | HandoffPipeline | provenance, validation_receipts | 0.94 |
+| Q20 | Praxeological | VRTDashboard | vrt_receipt, collision_report | 0.90 |
+| Q21 | Semiotic | DenimContext | material_grammar, collection_thesis | 0.76 |
+| Q22 | Semiotic | MandalaVsSpinner | shader_technique, collection_thesis | 0.83 |
+| Q23 | Semiotic | EmbroideryText | typographic_tokens, material_grammar | 0.81 |
+| Q24 | Semiotic | FallbackLadder | shader_technique, vrt_receipt | 0.89 |
+| Q25 | Compositional | MorphismLayout | components, space_tokens | 0.77 |
+| Q26 | Compositional | ParticleGaze | space_tokens, visual_mode | 0.72 |
+| Q27 | Compositional | AudioGradient | motion_curves, narrative_state | 0.65 |
+| Q28 | Narrative | SystemVoice | provenance, collection_thesis | 0.86 |
+| Q29 | Narrative | RecursivePipeline | compilation_stages, validation_receipts | 0.93 |
+| Q30 | Narrative | FinalReceipt | validation_receipts, artifact_manifest | 1.00 |
+
+---
+
+*Generated by the Seed-Loom Spec-to-Build Engine. Validated against image_semantics.json v1.0.0 and design_plan.json v1.0.0.*
